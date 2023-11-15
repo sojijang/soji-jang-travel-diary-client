@@ -19,8 +19,8 @@
 - Currency Conversion:
   Users can convert currencies easily within the app.
 
-- Expanses Tracker:
-  Users can input their total budget and track it. They can save their expenses along with details, and the app provides real-time updates on their budget status, allowing for better financial management during the trip.
+- Budget Tracker:
+  Users can input their total budget and track it. They can save their budget along with details, and the app provides real-time updates on their budget status, allowing for better financial management during the trip.
 
 - Organizing Trip Plans with Calendar Feature:
   Users can plan and organize their trips through a calendar feature.
@@ -36,8 +36,6 @@
 
 - Memo saving:
   Users can create and manage memos.
-
-## Implementation
 
 ### Tech Stack
 
@@ -74,7 +72,7 @@ First page:
 ![First page](mockup-0.png)
 ![Main page](mockup-1.png)
 ![Login page](mockup-2.png)
-![Alt text](mockup-3.png)!
+![Budget page](mockup-3.png)!
 ![Calendar page](mockup-4.png)
 ![Map page](mockup-5.png)
 
@@ -84,163 +82,14 @@ First page:
 
 ### Endpoints
 
-1. Country Selection Page: /country
-
-<!-- - HTTP Method: POST
-- Parameters: Selected Country
-- Successful Response:
-  "status": "success",
-  "message": "Country selection successful. Redirecting to the Main Page."
-- Error Response:
-  "status": "error",
-  "message": "Unable to save country selection. Please try again." -->
-
-2. Main Page: /home
-
-<!-- - HTTP Method: Get (for trip information and currency data)
-- Parameters: Google Authentication Token
-- Successful Response:
-  "status": "success",
-  "message": "Main Page data retrieved successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to load Main Page. Please try again later."
-
-- HTTP Method: POST (for creating a new checklist and memo)
-- Parameters: Google Authentication Token, Checklist Item & Memo Content
-- Successful Response:
-  "status": "success",
-  "message": "Checklist item created successfully." or "Memo created successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to save. Please try again later."
-
-- HTTP Method: PUT (for updating a checklist and memo)
-- Parameters: Google Authentication Token, Checklist Item or Memo ID & Updated Checklist Item or Memo
-- Successful Response:
-  "status": "success",
-  "message": "Checklist item updated successfully." or "Memo updated successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to update. Please try again later."
-
-- HTTP Method: DELETE (for deleting a checklist and memo)
-- Parameters: Google Authentication Token, Checklist Item or Memo ID
-- Successful Response:
-  "status": "success",
-  "message": "Checklist item deleted successfully." or "Memo deleted successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to delete. Please try again later." -->
-
+1. Country Selection Page: /
+2. Main Page: /dashboard
 3. Login Page: /login
-<!--
-
-- HTTP Method: POST
-- Parameters: Google Authentication Token
-- Successful Response:
-  "status": "success",
-  "message": "Login successful"
-- Error Response:
-  "status": "error",
-  "message": "Invalid Google authentication. Please try again." -->
-
-4. My Trip Page: /my-trip
-
-<!-- - HTTP Method: POST
-- Parameters: Google Authentication Token, Trip Information
-- Successful Response:
-  "status": "success",
-  "message": "Trip information saved successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to save trip information. Please try again." -->
-
-5. Finance Page: /finance
-
-<!-- - HTTP Method: GET
-- Parameters: Google Authentication Token
-- Successful Response:
-  "status": "success",
-  "message": "Finance data retrieved successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to load Finance Page. Please try again later." -->
-
-6. Calendar Page: /calender
-<!--
-
-- HTTP Method: GET
-- Parameters: Google Authentication Token
-- Successful Response:
-  "status": "success",
-  "message": "Calendar data retrieved successfully."
-- Error Response: "Unable to retrieve Calendar data. Please try again later."
-
-- HTTP Method: POST (for saving trip plans)
-- Parameters: Google Authentication Token, Trip Plan Information
-- Successful Response:
-  "status": "success",
-  "message": "Trip plan saved successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to save trip plan. Please try again."
-
-- HTTP Method: PUT (for updating trip plans)
-- Parameters: Google Authentication Token, Trip Plan ID & Updated Trip Plan Information
-- Successful Response:
-  "status": "success",
-  "message": "Trip plan updated successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to update trip plan. Please try again."
-
-- HTTP Method: DELETE (for deleting trip plans)
-- Parameters: Google Authentication Token, Trip Plan ID
-- Successful Response:
-  "status": "success",
-  "message": "Trip plan deleted successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to delete trip plan. Please try again." -->
-
-7. Map Page: /map
-
-<!-- - HTTP Method: GET
-- Parameters: Google Authentication Token
-- Successful Response:
-  "status": "success",
-  "message": "Map data retrieved successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to retrieve Map data. Please try again later."
-
-- HTTP Method: POST (for saving places-to-go)
-- Parameters: Google Authentication Token, Place Information
-- Successful Response:
-  "status": "success",
-  "message": "Place saved successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to save place. Please try again."
-
-- HTTP Method: PUT (for updating places-to-go's details)
-- Parameters: Google Authentication Token, Place ID & Place ID
-- Successful Response:
-  "status": "success",
-  "message": "Place updated successfully.",
-- Error Response:
-  "status": "error",
-  "message": "Unable to update place. Please try again."
-
-- HTTP Method: DELETE (for deleting places-to-go)
-- Parameters: Google Authentication Token, Place ID
-- Successful Response:
-  "status": "success",
-  "message": "Place deleted successfully."
-- Error Response:
-  "status": "error",
-  "message": "Unable to delete place. Please try again." -->
+4. Signup Page: /signup
+<!-- 5. My Trip Page: /my-trip -->
+<!-- 6. Finance Page: /finance -->
+5. Calendar Page: /calender
+6. Map Page: /map
 
 ### Auth
 
