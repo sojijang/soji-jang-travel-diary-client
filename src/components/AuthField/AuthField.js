@@ -1,4 +1,4 @@
-import "./Input.scss";
+import "./AuthField.scss";
 
 function Input({ label, name, type }) {
   return (

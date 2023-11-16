@@ -1,2 +1,9 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.current-currency {
+  background-color: rgb(204, 171, 208);
+  width: 20rem;
+  height: 2rem;
+  text-align: center;
+}

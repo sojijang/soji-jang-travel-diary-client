@@ -2,7 +2,7 @@ import "./Login.scss";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Input from "../../components/Input/Input";
+import AuthField from "../../components/AuthField/AuthField";
 
 export default function Login() {
   const [error, setError] = useState(null);
@@ -32,8 +32,8 @@ export default function Login() {
     <main className="login-page">
       <form className="login" onSubmit={handleSubmit}>
         <h1 className="login__title">Hello!</h1>
-        <Input type="text" name="email" label="Email" />
-        <Input type="password" name="password" label="Password" />
+        <AuthField type="text" name="email" label="Email" />
+        <AuthField type="password" name="password" label="Password" />
         <button className="login__button">Log in</button>
         {error && <div className="login__message">{error}</div>}
       </form>
