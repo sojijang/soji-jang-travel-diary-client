@@ -67,18 +67,7 @@
 
 ### Mockups
 
-First page:
-
-![First page](mockup-0.png)
-![Main page](mockup-1.png)
-![Login page](mockup-2.png)
-![Budget page](mockup-3.png)!
-![Calendar page](mockup-4.png)
-![Map page](mockup-5.png)
-
 ### Data
-
-![Data tables](data-tables.png)
 
 ### Endpoints
 
@@ -86,8 +75,6 @@ First page:
 2. Main Page: /dashboard
 3. Login Page: /login
 4. Signup Page: /signup
-<!-- 5. My Trip Page: /my-trip -->
-<!-- 6. Finance Page: /finance -->
 5. Calendar Page: /calender
 6. Map Page: /map
 
