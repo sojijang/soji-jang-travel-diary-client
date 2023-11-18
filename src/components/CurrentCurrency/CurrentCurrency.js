@@ -1,7 +1,6 @@
 import "./CurrentCurrency.scss";
 import { useEffect, useState } from "react";
 import { fetchCurrentCurrency } from "../../utils/API";
-import axios from "axios";
 
 export default function CurrentCurrency() {
   const [poundCurrency, setPoundCurrency] = useState([]);
