@@ -1,5 +1,6 @@
 import "./CurrentCurrency.scss";
 import { useEffect, useState } from "react";
+import { fetchCurrentCurrency } from "../../utils/API";
 import axios from "axios";
 
 export default function CurrentCurrency() {
@@ -7,21 +8,17 @@ export default function CurrentCurrency() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCurrentCurrency = async () => {
+    const fetchCurrentGBP = async () => {
       try {
-        const response = await axios.get(
-          process.env.REACT_APP_BASE_URL + "/currency-rate"
-        );
-
-        console.log(response.data.data.GBP);
-        setPoundCurrency(response.data.data.GBP);
+        const data = await fetchCurrentCurrency();
+        setPoundCurrency(data.data.GBP);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchCurrentCurrency();
+    fetchCurrentGBP();
   }, []);
 
   return (

@@ -1,2 +1,7 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.equal {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
