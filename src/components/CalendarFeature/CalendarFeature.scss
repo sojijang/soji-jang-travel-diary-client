@@ -1,2 +1,9 @@
-@use "../../styles/partials/variables" as *;
-@use "../../styles/partials/mixins" as *;
+.calendar {
+  &__title {
+    text-align: center;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}
