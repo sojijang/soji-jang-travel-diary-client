@@ -2,6 +2,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .conversion {
+  margin: 3rem;
   &__input {
     border: 1px solid #333;
     border-radius: 0.3rem;
@@ -11,6 +12,5 @@
 
   &__select {
     margin-left: 0.5rem;
-
   }
 }

@@ -2,11 +2,14 @@
 @use "../../styles/partials/mixins" as *;
 
 .current-currency {
-  background-color: #ffffff;
-  width: 20rem;
-  height: 2rem;
-  text-align: center;
-  padding-bottom: 1rem;
-  border: 0.15rem solid rgb(204, 171, 208);
-  border-radius: 0.35rem;
+  margin: 3rem;
+  &__box {
+    background-color: #ffffff;
+    width: 20rem;
+    height: 3.5rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border: 0.1rem solid;
+    border-radius: 0.35rem;
+  }
 }

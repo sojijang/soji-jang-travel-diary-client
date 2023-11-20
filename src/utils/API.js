@@ -12,10 +12,11 @@ const fetchCalendarActivity = async () => {
   return data;
 };
 
-const fetchOneActivity = async (activityId) => {
-  const { data } = await axios.get(
-    `${baseURL}/calendar-activity/${activityId}`
-  );
+const postActivity = async (newActivity, userId) => {
+  const { data } = await axios.post(`${baseURL}/calendar-activity`, {
+    ...newActivity,
+    user_id: userId,
+  });
   return data;
 };
 
@@ -35,7 +36,7 @@ const deleteActivity = async (activityId) => {
 export {
   fetchCurrentCurrency,
   fetchCalendarActivity,
-  fetchOneActivity,
+  postActivity,
   editActivity,
   deleteActivity,
 };

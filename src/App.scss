@@ -1,2 +1,14 @@
 @use "./styles/partials/variables" as *;
 @use "./styles/partials/mixins" as *;
+@use "./styles//partials/resets" as *;
+
+.App {
+  border-radius: 2rem;
+  background-color: #ffffff;
+  height: 80vw;
+  width: 95vw;
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  left: 2.5%;
+}

@@ -1,9 +1,8 @@
-.calendar {
-  &__title {
-    text-align: center;
-  }
-  &__wrapper {
-    display: flex;
-    justify-content: center;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.calendar-feature {
+  &__button {
+    cursor: pointer;
   }
 }

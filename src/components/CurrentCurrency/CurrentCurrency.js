@@ -21,8 +21,9 @@ export default function CurrentCurrency() {
   }, []);
 
   return (
-    <article>
-      <div className="current-currency">
+    <article className="current-currency">
+      <h1>Current Currency</h1>
+      <div className="current-currency__box">
         {isLoading ? (
           <p>Loading...</p>
         ) : (

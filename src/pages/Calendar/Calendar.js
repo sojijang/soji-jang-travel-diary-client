@@ -3,7 +3,7 @@ import CalendarFeature from "../../components/CalendarFeature/CalendarFeature";
 
 export default function Calendar() {
   return (
-    <main>
+    <main className="calendar">
       <CalendarFeature />
     </main>
   );
