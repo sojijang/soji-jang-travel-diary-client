@@ -1,8 +1,30 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+.calendar-activity {
+  margin: 1rem;
+  border: 0.1rem solid #000000;
+  border-radius: 0.25rem;
+  width: 50%;
+
+  &__plan-notes {
+    display: flex;
+  }
+
+  &__time {
+    display: flex;
+  }
+
+  &__time-table {
+    border: 0.025rem solid #827a7a;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+}
+
 .calendar-feature {
   &__button {
     cursor: pointer;
+    margin-top: 1rem;
   }
 }

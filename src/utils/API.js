@@ -12,30 +12,37 @@ const fetchCalendarActivity = async () => {
   return data;
 };
 
-const postActivity = async (newActivity, userId) => {
+const fetchOneCalendarActivity = async (calendarId) => {
+  const { data } = await axios.get(
+    `${baseURL}/calendar-activity/${calendarId}`
+  );
+  return data;
+};
+
+const postActivity = async (newActivity) => {
   const { data } = await axios.post(`${baseURL}/calendar-activity`, {
     ...newActivity,
-    user_id: userId,
   });
   return data;
 };
 
-const editActivity = async (activityId, editActivityObj) => {
+const editActivity = async (calendarId, editEventObj) => {
   const response = await axios.put(
-    `${baseURL}/calendar-activity/${activityId}`,
-    editActivityObj
+    `${baseURL}/calendar-activity/${calendarId}`,
+    editEventObj
   );
 
   return response;
 };
 
-const deleteActivity = async (activityId) => {
-  await axios.delete(`${baseURL}/calendar-activity/${activityId}`);
+const deleteActivity = async (calendarId) => {
+  await axios.delete(`${baseURL}/calendar-activity/${calendarId}`);
 };
 
 export {
   fetchCurrentCurrency,
   fetchCalendarActivity,
+  fetchOneCalendarActivity,
   postActivity,
   editActivity,
   deleteActivity,
