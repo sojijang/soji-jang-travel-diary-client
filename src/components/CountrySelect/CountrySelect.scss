@@ -1,2 +1,18 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.country-select {
+  &__globe-image {
+    width: 17rem;
+    height: 17rem;
+  }
+
+  &__pin-image {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    z-index: 10;
+    left: 48%;
+    top: 20%;
+  }
+}

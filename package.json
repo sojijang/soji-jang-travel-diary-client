@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
+    "page-flip": "^2.0.7",
     "react": "^18.2.0",
     "react-calendar": "^4.6.1",
     "react-datepicker": "^4.21.0",
@@ -28,8 +29,6 @@
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "sass": "^1.69.5",
-    "tui-date-picker": "^4.3.3",
-    "tui-time-picker": "^2.1.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

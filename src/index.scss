@@ -1,8 +1,3 @@
 @use "./styles/partials/variables" as *;
 @use "./styles/partials/mixins" as *;
 @use "./styles//partials/resets" as *;
-
-#root {
-  background-color: #cdd6dd;
-  height: 100vw;
-}
