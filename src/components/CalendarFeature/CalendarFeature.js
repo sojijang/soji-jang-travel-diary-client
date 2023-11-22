@@ -12,11 +12,12 @@ import {
 import EventDetails from "../EventDetails/EventDetails";
 import AddEvent from "../AddEvent/AddEvent";
 import EditEvent from "../EditEvent/EditEvent";
+import DeleteEvent from "../DeleteEvent/DeleteEvent";
 
 export default function CalendarFeature() {
   const [showAddActivity, setShowAddActivity] = useState(false);
   const [showEvent, setShowEvent] = useState(false);
-  const [eventDetails, setEventDetails] = useState("");
+  const [eventDetails, setEventDetails] = useState({});
   const [plans, setPlans] = useState([]);
 
   const [date, setDate] = useState("");
@@ -26,15 +27,18 @@ export default function CalendarFeature() {
   const [budget, setBudget] = useState("");
 
   const [showEditEvent, setShowEditEvent] = useState(false);
+  const [showEditDelete, setShowEditDelete] = useState(false);
   const [calendarActivities, setCalendarActivities] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const [startDate, setStartDate] = useState(new Date());
+  const [activityId, setActivityId] = useState(null);
 
   useEffect(() => {
     const fetchAllPlans = async () => {
       const allPlans = await fetchCalendarActivity();
       const formattedPlans = allPlans.map((plan) => ({
+        id: plan.id,
         title: plan.location,
         start: plan.date,
         AMplan: plan.morning_task,
@@ -51,6 +55,7 @@ export default function CalendarFeature() {
 
   const handleEventClick = (clickInfo) => {
     setEventDetails({
+      id: clickInfo.event.id,
       title: clickInfo.event.title,
       start: clickInfo.event.start.toLocaleString(),
       AMplan: clickInfo.event.extendedProps.AMplan,
@@ -58,23 +63,37 @@ export default function CalendarFeature() {
       budget: clickInfo.event.extendedProps.budget,
     });
 
+    setActivityId(clickInfo.event.id);
+
     setShowEvent(true);
     setShowEditEvent(false);
     setShowAddActivity(false);
-  };
-
-  const handleDateSelect = (date) => {
-    setStartDate(date);
-    setDate(date.toISOString().split("T")[0]);
+    setShowEditDelete(false);
   };
 
   const handleAddClick = () => {
     setShowAddActivity(true);
     setShowEvent(false);
     setShowEditEvent(false);
+    setShowEditDelete(false);
   };
 
-  const handleSubmit = async () => {
+  const handleShowEdit = () => {
+    setShowEditEvent(true);
+    setShowEvent(false);
+    setShowAddActivity(false);
+    setShowEditDelete(false);
+  };
+
+  const handleShowDelete = () => {
+    setShowEditDelete(true);
+    setShowEvent(false);
+    setShowEditEvent(false);
+    setShowAddActivity(false);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       if (!date || !location || !morningTask || !afternoonTask || !budget) {
         console.error("Please make sure all fields are filled out.");
@@ -100,6 +119,7 @@ export default function CalendarFeature() {
   const getCalendarActivity = async () => {
     try {
       const data = await fetchCalendarActivity();
+
       setCalendarActivities(data);
       setIsLoading(false);
     } catch (error) {
@@ -111,10 +131,35 @@ export default function CalendarFeature() {
     getCalendarActivity();
   }, []);
 
-  const handleShowEdit = () => {
-    setShowEvent(false);
-    setShowEditEvent(true);
-    setShowAddActivity(false);
+  const handleDelete = async (activityId) => {
+    try {
+      await deleteActivity(activityId);
+    } catch (error) {
+      console.error(error);
+    }
+    getCalendarActivity();
+    setShowEditDelete(false);
+  };
+
+  const handleSave = async () => {
+    const updatedActivity = {
+      date: eventDetails.start,
+      location: eventDetails.title,
+      morning_task: eventDetails.AMplan,
+      afternoon_task: eventDetails.PMplan,
+      budget: parseFloat(eventDetails.budget),
+    };
+
+    try {
+      await editActivity(activityId, updatedActivity);
+    } catch (error) {
+      console.error("Error updating activity:", error);
+    }
+  };
+
+  const handleDateSelect = (date) => {
+    setStartDate(date);
+    setDate(date.toISOString().split("T")[0]);
   };
 
   const renderEventContent = (eventInfo) => {
@@ -149,18 +194,23 @@ export default function CalendarFeature() {
           eventDetails={eventDetails}
           setShowEvent={setShowEvent}
           handleShowEdit={handleShowEdit}
+          handleShowDelete={handleShowDelete}
         />
+      )}
+      {showEditDelete && (
+        <DeleteEvent handleDelete={handleDelete} activityId={activityId} />
       )}
       {showEditEvent && (
         <EditEvent
-          handleDateSelect={handleDateSelect}
           eventDetails={eventDetails}
           setEventDetails={setEventDetails}
+          handleSave={handleSave}
         />
       )}
       {showAddActivity && (
         <AddEvent
           setShowAddActivity={setShowAddActivity}
+          startDate={startDate}
           handleDateSelect={handleDateSelect}
           setLocation={setLocation}
           setMorningTask={setMorningTask}

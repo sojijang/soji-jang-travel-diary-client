@@ -4,6 +4,7 @@ export default function ShowEvent({
   eventDetails,
   setShowEvent,
   handleShowEdit,
+  handleShowDelete,
 }) {
   return (
     <div className="calendar-activity">
@@ -26,7 +27,9 @@ export default function ShowEvent({
       <button className="calendar-feature__button" onClick={handleShowEdit}>
         Edit
       </button>
-      <button className="calendar-feature__button">Delete</button>
+      <button className="calendar-feature__button" onClick={handleShowDelete}>
+        Delete
+      </button>
     </div>
   );
 }

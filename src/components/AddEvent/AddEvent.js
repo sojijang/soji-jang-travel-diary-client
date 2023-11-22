@@ -2,9 +2,11 @@ import "./AddEvent.scss";
 import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 
 export default function AddEvent({
   setShowAddActivity,
+  startDate,
   handleDateSelect,
   setLocation,
   setMorningTask,
@@ -12,8 +14,6 @@ export default function AddEvent({
   setBudget,
   handleSubmit,
 }) {
-  const [startDate, setStartDate] = useState(new Date());
-
   return (
     <section className="calendar-activity">
       <div className="calendar-activity__wrapper">

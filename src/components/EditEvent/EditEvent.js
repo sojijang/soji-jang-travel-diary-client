@@ -1,19 +1,27 @@
-// import "./EditEvent/scss";
+import "./EditEvent.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 
 export default function EditEvent({
-  handleDateSelect,
   eventDetails,
   setEventDetails,
+  handleSave,
 }) {
   const [startDate, setStartDate] = useState(new Date());
+
+  const handleDateSelect = (date) => {
+    setStartDate(date);
+    setEventDetails({
+      ...eventDetails,
+      start: date.toISOString().split("T")[0],
+    });
+  };
 
   return (
     <div className="edit-popup">
       <h2 className="edit-popup__title">Edit Event</h2>
-      <form className="edit-popup__form">
+      <form onClick={handleSave} className="edit-popup__form">
         <p className="edit-popup__subtitle">Date</p>
         <DatePicker selected={startDate} onChange={handleDateSelect} />
         <p className="edit-popup">Location:</p>

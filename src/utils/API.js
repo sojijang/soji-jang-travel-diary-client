@@ -12,9 +12,9 @@ const fetchCalendarActivity = async () => {
   return data;
 };
 
-const fetchOneCalendarActivity = async (calendarId) => {
+const fetchOneCalendarActivity = async (activityId) => {
   const { data } = await axios.get(
-    `${baseURL}/calendar-activity/${calendarId}`
+    `${baseURL}/calendar-activity/${activityId}`
   );
   return data;
 };
@@ -26,17 +26,17 @@ const postActivity = async (newActivity) => {
   return data;
 };
 
-const editActivity = async (calendarId, editEventObj) => {
+const editActivity = async (activityId, updatedActivity) => {
   const response = await axios.put(
-    `${baseURL}/calendar-activity/${calendarId}`,
-    editEventObj
+    `${baseURL}/calendar-activity/${activityId}`,
+    updatedActivity
   );
 
   return response;
 };
 
-const deleteActivity = async (calendarId) => {
-  await axios.delete(`${baseURL}/calendar-activity/${calendarId}`);
+const deleteActivity = async (activityId) => {
+  await axios.delete(`${baseURL}/calendar-activity/${activityId}`);
 };
 
 export {
