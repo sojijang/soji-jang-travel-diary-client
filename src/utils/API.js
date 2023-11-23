@@ -39,6 +39,36 @@ const deleteActivity = async (activityId) => {
   await axios.delete(`${baseURL}/calendar-activity/${activityId}`);
 };
 
+const fetchMapPoint = async () => {
+  const { data } = await axios.get(`${baseURL}/map`);
+  return data;
+};
+
+const fetchOneMapPoint = async (map_pointId) => {
+  const { data } = await axios.get(`${baseURL}/map/${map_pointId}`);
+  return data;
+};
+
+const postMapPoint = async (newMapPoint) => {
+  const { data } = await axios.post(`${baseURL}/map`, {
+    ...newMapPoint,
+  });
+  return data;
+};
+
+const editMapPoint = async (map_pointId, updatedMapPoint) => {
+  const response = await axios.put(
+    `${baseURL}/map/${map_pointId}`,
+    updatedMapPoint
+  );
+
+  return response;
+};
+
+const deleteMapPoint = async (map_pointId) => {
+  await axios.delete(`${baseURL}/map/${map_pointId}`);
+};
+
 export {
   fetchCurrentCurrency,
   fetchCalendarActivity,
@@ -46,4 +76,9 @@ export {
   postActivity,
   editActivity,
   deleteActivity,
+  fetchMapPoint,
+  fetchOneMapPoint,
+  postMapPoint,
+  editMapPoint,
+  deleteMapPoint,
 };

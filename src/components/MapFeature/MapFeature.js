@@ -4,6 +4,13 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useRef, useEffect, useState } from "react";
 import MapPoint from "../MapPoint/MapPoint";
 import Flag from "../../assets/icons/flag_10552468.png";
+import {
+  fetchMapPoint,
+  fetchOneMapPoint,
+  postMapPoint,
+  editMapPoint,
+  deleteMapPoint,
+} from "../../utils/API";
 
 export default function MapFeature() {
   const [viewState, setViewState] = useState({
@@ -12,6 +19,20 @@ export default function MapFeature() {
     zoom: 8,
   });
   const [showPopup, setShowPopup] = useState(true);
+  const [points, setPoints] = useState([]);
+
+  useEffect(() => {
+    const getPoints = async () => {
+      try {
+        const data = await fetchMapPoint();
+
+        setPoints(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getPoints();
+  }, []);
 
   return (
     <div>
@@ -23,30 +44,32 @@ export default function MapFeature() {
         style={{ width: 390, height: 390 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        <Marker longitude={0.1641} latitude={51.5074} anchor="bottom">
-          <img
-            className="marker__image"
-            src={Flag}
-            style={{ fontSize: viewState.zoom }}
-          />
-          {showPopup && (
+        {points.map((point) => (
+          <div key={point.id}>
+            <Marker longitude={point.lng} latitude={point.lat} anchor="bottom">
+              <img
+                className="marker__image"
+                src={Flag}
+                style={{ fontSize: viewState.zoom }}
+                alt="Marker"
+              />
+            </Marker>
             <Popup
-              longitude={0.1641}
-              latitude={51.5074}
-              anchor="bottom"
+              longitude={point.lng}
+              latitude={point.lat}
+              anchor="top"
               closeButton={true}
               closeOnClick={false}
-              onClose={() => setShowPopup(false)}
             >
               <div className="map-place">
                 <label htmlFor="place">Place</label>
-                <p>Big Ben</p>
+                <p>{point.title}</p>
                 <label htmlFor="description">Description</label>
-                <p>Nice view</p>
+                <p>{point.description}</p>
               </div>
             </Popup>
-          )}
-        </Marker>
+          </div>
+        ))}
       </Map>
     </div>
   );
