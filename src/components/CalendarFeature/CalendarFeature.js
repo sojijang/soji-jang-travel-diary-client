@@ -141,7 +141,9 @@ export default function CalendarFeature() {
     setShowEditDelete(false);
   };
 
-  const handleSave = async () => {
+  const handleSave = async (event) => {
+    event.preventDefault();
+
     const updatedActivity = {
       date: eventDetails.start,
       location: eventDetails.title,

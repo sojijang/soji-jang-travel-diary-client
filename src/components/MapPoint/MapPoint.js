@@ -1,6 +1,15 @@
 import "./MapPoint.scss";
-import { Marker } from "mapbox-gl";
 
 export default function MapPoint() {
-  return <></>;
+  return (
+    <div>
+      <form action="">
+        <label htmlFor="">Label</label>
+        <input type="text" />
+        <label htmlFor="">Description</label>
+        <input type="text" />
+      </form>
+      <button>Save</button>
+    </div>
+  );
 }
