@@ -2,15 +2,17 @@
 @use "../../styles/partials/mixins" as *;
 
 .conversion {
-  margin: 3rem;
+  margin: 2rem;
   &__input {
     border: 1px solid #333;
     border-radius: 0.3rem;
     padding: 0.25rem;
     width: 10rem;
+    background-color: #f2f0f9;
   }
 
   &__select {
     margin-left: 0.5rem;
+    background-color: #f2f0f9;
   }
 }

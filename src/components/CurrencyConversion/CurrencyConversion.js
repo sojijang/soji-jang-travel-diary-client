@@ -81,7 +81,7 @@ export default function CurrencyConversion() {
 
   return (
     <div className="conversion">
-      <h1>Convert</h1>
+      <h2>Convert</h2>
       <input
         className="conversion__input"
         type="number"

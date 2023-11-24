@@ -2,13 +2,12 @@
 @use "../../styles/partials/mixins" as *;
 
 .current-currency {
-  margin: 3rem;
+  margin: 2rem;
   &__box {
-    background-color: #ffffff;
+    background-color: #f2f0f9;
     width: 20rem;
-    height: 3.5rem;
+    height: 3.3rem;
     text-align: center;
-    padding-bottom: 1rem;
     border: 0.1rem solid;
     border-radius: 0.35rem;
   }
