@@ -8,6 +8,7 @@ import Signup from "./pages/Signup/Signup";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Calendar from "./pages/Calendar/Calendar";
 import Map from "./pages/Map/Map";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -30,9 +31,13 @@ function App() {
             element={<Login setCurrentUser={setCurrentUser} />}
           />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route
+            path="/calendar"
+            element={<Calendar currentUser={currentUser} />}
+          />
           <Route path="/map" element={<Map currentUser={currentUser} />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

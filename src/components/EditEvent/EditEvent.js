@@ -24,6 +24,7 @@ export default function EditEvent({
       <form onClick={handleSave} className="edit-popup__form">
         <p className="edit-popup__subtitle">Date</p>
         <DatePicker selected={startDate} onChange={handleDateSelect} />
+        {/* check here */}
         <p className="edit-popup">Location:</p>
         <input
           type="text"
