@@ -1,11 +1,15 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+p, h2{
+  font-family: "Kalam", sans-serif;
+}
+
 .dashboard {
   &__title {
     text-align: center;
-    font-family: "Kalam";
   }
+
   &__login-icon {
     width: 3rem;
     height: 3rem;

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthField from "../../components/AuthField/AuthField";
+import UserIcon from "../../assets/icons/user_1836204.svg";
 
 function Signup() {
   const [error, setError] = useState(null);
@@ -29,7 +30,10 @@ function Signup() {
   return (
     <main className="signup-page">
       <form className="signup" onSubmit={handleSubmit}>
-        <h1 className="signup__title">Sign up</h1>
+        <div className="signup__wrapper">
+          <img className="signup__icon" src={UserIcon} alt="User" />
+          <h1 className="signup__title">Sign up</h1>
+        </div>
         <AuthField type="text" name="first_name" label="First name" />
         <AuthField type="text" name="last_name" label="Last name" />
         <AuthField type="text" name="email" label="Email" />
