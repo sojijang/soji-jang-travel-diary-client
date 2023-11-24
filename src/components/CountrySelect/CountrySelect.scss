@@ -3,16 +3,42 @@
 
 .country-select {
   &__globe-image {
-    width: 17rem;
-    height: 17rem;
+    width: 14rem;
+    height: 14rem;
+    margin: 5rem;
   }
 
   &__pin-image {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     position: absolute;
     z-index: 10;
-    left: 48%;
-    top: 20%;
+    left: 52%;
+    top: 43%;
+    cursor: pointer;
+  }
+
+  &__diary-image {
+    width: 350px;
+    height: 450px;
+    position: absolute;
+    top: 7%;
+    right: 3%;
+  }
+
+  &__plain-image {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    bottom: 8%;
+    right: 9%;
+  }
+
+  &__plain-image-two {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    left: 5%;
+    top: 33%;
   }
 }

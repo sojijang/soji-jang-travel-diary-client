@@ -1,6 +1,8 @@
 import "./CurrencyConversion.scss";
 import { useEffect, useState } from "react";
 import { fetchCurrentCurrency } from "../../utils/API";
+import ConvertIcon from "../../assets/icons/money_10189352.svg";
+import IntoIcon from "../../assets/icons/equal_402583.svg";
 
 export default function CurrencyConversion() {
   const [allCurrencyCodes, setAllCurrencyCodes] = useState([]);
@@ -81,42 +83,49 @@ export default function CurrencyConversion() {
 
   return (
     <div className="conversion">
-      <h2>Convert</h2>
-      <input
-        className="conversion__input"
-        type="number"
-        value={isNaN(fromRate) ? "" : fromRate}
-        onChange={handleFromRateChange}
-      />
-      <select
-        className="conversion__select"
-        value={fromCurrency}
-        onChange={handleFromCurrencyChange}
-      >
-        {allCurrencyCodes.map((code) => (
-          <option key={code} className="conversion__option" value={code}>
-            {code}
-          </option>
-        ))}
-      </select>
-      <div className="equal">=</div>
-      <input
-        className="conversion__input"
-        type="number"
-        value={isNaN(toRate) ? "" : toRate}
-        onChange={handleToRateChange}
-      />
-      <select
-        className="conversion__select"
-        value={selectedToCurrency}
-        onChange={(event) => setSelectedToCurrency(event.target.value)}
-      >
-        {allCurrencyCodes.map((code) => (
-          <option key={code} className="conversion__option" value={code}>
-            {code}
-          </option>
-        ))}
-      </select>
+      <img className="conversion__icon" src={ConvertIcon} alt="" />
+
+      <div className="conversion__container">
+        <div className="conversion__dollar">
+          <input
+            className="conversion__input"
+            type="number"
+            value={isNaN(fromRate) ? "" : fromRate}
+            onChange={handleFromRateChange}
+          />
+          <select
+            className="conversion__select"
+            value={fromCurrency}
+            onChange={handleFromCurrencyChange}
+          >
+            {allCurrencyCodes.map((code) => (
+              <option key={code} className="conversion__option" value={code}>
+                {code}
+              </option>
+            ))}
+          </select>
+        </div>
+        <img className="conversion__into-icon" src={IntoIcon} alt="" />
+        <div className="conversion__pound">
+          <input
+            className="conversion__input"
+            type="number"
+            value={isNaN(toRate) ? "" : toRate}
+            onChange={handleToRateChange}
+          />
+          <select
+            className="conversion__select"
+            value={selectedToCurrency}
+            onChange={(event) => setSelectedToCurrency(event.target.value)}
+          >
+            {allCurrencyCodes.map((code) => (
+              <option key={code} className="conversion__option" value={code}>
+                {code}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import "./CurrentCurrency.scss";
 import { useEffect, useState } from "react";
 import { fetchCurrentCurrency } from "../../utils/API";
+import PoundIcon from "../../assets/icons/pound-sterling_2505594.svg";
 
 export default function CurrentCurrency() {
   const [poundCurrency, setPoundCurrency] = useState([]);
@@ -22,13 +23,18 @@ export default function CurrentCurrency() {
 
   return (
     <article className="current-currency">
-      <h1>Current Currency</h1>
+      {/* <h2 className="current-currency__title">Current Currency</h2> */}
       <div className="current-currency__box">
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <p>Current Currency (GBP): {poundCurrency}</p>
-        )}
+        <img className="current-currency__pound-icon" src={PoundIcon} alt="" />
+        <div>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <p>
+              <b>Current GBP</b> : £ {poundCurrency}
+            </p>
+          )}
+        </div>
       </div>
     </article>
   );

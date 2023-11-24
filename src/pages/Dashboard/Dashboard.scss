@@ -2,11 +2,23 @@
 @use "../../styles/partials/mixins" as *;
 
 .dashboard {
-  &__login-button {
-    margin: 2rem;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    background-color: #f2f0f9;
+  &__title {
+    text-align: center;
+    font-family: "Kalam";
+  }
+  &__login-icon {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    right: 14px;
+    top: 15px;
+  }
+
+  &__login-text {
+    margin: 0;
+    padding-top: 4.2rem;
+    padding-right: 1rem;
+    text-align: right;
   }
 
   &__link {
