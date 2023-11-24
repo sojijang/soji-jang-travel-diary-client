@@ -1,7 +1,7 @@
 import "./MapFeature.scss";
 import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
-import { SearchBox } from "@mapbox/search-js-react";
+import { SearchBox, AddressAutofill } from "@mapbox/search-js-react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import "@mapbox/search-js-react/css/style.css";
@@ -16,7 +16,8 @@ import {
   deleteMapPoint,
 } from "../../utils/API";
 
-export default function MapFeature() {
+export default function MapFeature({ currentUser }) {
+  const [value, setValue] = useState("");
   const [viewState, setViewState] = useState({
     latitude: 51.5072,
     longitude: -0.118092,
@@ -26,6 +27,7 @@ export default function MapFeature() {
   const [query, setQuery] = useState("");
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
+  const [dbPlace, setDbPlace] = useState(null);
   const [label, setLabel] = useState(null);
   const [description, setDescription] = useState(null);
 
@@ -64,6 +66,7 @@ export default function MapFeature() {
 
     if (newPlace) {
       const newMapPoint = {
+        user_id: currentUser,
         label,
         description,
         lat: newPlace.lat,
@@ -108,6 +111,15 @@ export default function MapFeature() {
             },
           }}
         />
+        <form>
+          <AddressAutofill accessToken={process.env.REACT_APP_MAP_TOKEN}>
+            <input
+              autoComplete="shipping address-line1"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          </AddressAutofill>
+        </form>
 
         {points.map((point) => (
           <div key={point.id}>

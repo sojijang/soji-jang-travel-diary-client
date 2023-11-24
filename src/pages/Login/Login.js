@@ -1,10 +1,11 @@
 import "./Login.scss";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthField from "../../components/AuthField/AuthField";
 
-export default function Login() {
+export default function Login({ setCurrentUser }) {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -20,8 +21,13 @@ export default function Login() {
         }
       );
 
-      sessionStorage.setItem("token", response.data.token);
-      navigate("/");
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+
+      const decodedToken = jwtDecode(token);
+
+      setCurrentUser(decodedToken.id);
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
       setError(error.response ? error.response.data : "An error occurred");
