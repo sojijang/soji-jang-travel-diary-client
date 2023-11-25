@@ -1,13 +1,13 @@
 import "./MapFeature.scss";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
-import { SearchBox, AddressAutofill } from "@mapbox/search-js-react";
+import { SearchBox } from "@mapbox/search-js-react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-// import "@mapbox/search-js-react/css/style.css";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import LocationPin from "../../assets/icons/location_6675274.png";
-import MapPoint from "../MapPoint/MapPoint";
-
+import EditMap from "../../components/EditMap/EditMap";
+import AddMap from "../AddMap/AddMap";
 import {
   fetchMapPoint,
   fetchOneMapPoint,
@@ -15,9 +15,9 @@ import {
   editMapPoint,
   deleteMapPoint,
 } from "../../utils/API";
+import DeleteMap from "../DeleteMap/DeleteMap";
 
 export default function MapFeature({ currentUser }) {
-  const [value, setValue] = useState("");
   const [viewState, setViewState] = useState({
     latitude: 51.5072,
     longitude: -0.118092,
@@ -27,9 +27,13 @@ export default function MapFeature({ currentUser }) {
   const [query, setQuery] = useState("");
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
-  const [dbPlace, setDbPlace] = useState(null);
   const [label, setLabel] = useState(null);
   const [description, setDescription] = useState(null);
+
+  const [editPoint, setEditPoint] = useState(null);
+  const [pointId, setPointId] = useState(null);
+
+  const [showDelete, setShowDelete] = useState(false);
 
   useEffect(() => {
     const getPoints = async () => {
@@ -80,8 +84,60 @@ export default function MapFeature({ currentUser }) {
       } catch (error) {
         console.error(error);
       }
-    } else {
-      console.error("newPlace is null. Unable to save the map point.");
+    }
+  };
+
+  const handleEdit = (point) => {
+    setEditPoint(point);
+    setPointId(point.id);
+  };
+
+  const handleEditSave = async (event) => {
+    event.preventDefault();
+
+    const updatedPoint = {
+      user_id: currentUser,
+      label: editPoint.label,
+      description: editPoint.description,
+    };
+
+    try {
+      await editMapPoint(pointId, updatedPoint);
+
+      setPoints((prevPoints) =>
+        prevPoints.map((point) =>
+          point.id === pointId
+            ? {
+                ...point,
+                label: updatedPoint.label,
+                description: updatedPoint.description,
+              }
+            : point
+        )
+      );
+    } catch (error) {
+      console.error("Error updating point:", error);
+    }
+  };
+
+  const handleShowDelete = (point) => {
+    setShowDelete(true);
+    setPointId(point.id);
+  };
+
+  const handleDelete = async (pointId) => {
+    try {
+      await deleteMapPoint(pointId);
+
+      const updatedPoints = await fetchMapPoint();
+
+      setPoints(updatedPoints);
+
+      setCurrentPlaceId(null);
+      setEditPoint(null);
+      setShowDelete(false);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -111,16 +167,6 @@ export default function MapFeature({ currentUser }) {
             },
           }}
         />
-        <form>
-          <AddressAutofill accessToken={process.env.REACT_APP_MAP_TOKEN}>
-            <input
-              autoComplete="shipping address-line1"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            />
-          </AddressAutofill>
-        </form>
-
         {points.map((point) => (
           <div key={point.id}>
             <Marker
@@ -136,6 +182,7 @@ export default function MapFeature({ currentUser }) {
                 alt="Marker"
                 onClick={() => {
                   handleClickMarker(point.id);
+                  setShowDelete(false);
                 }}
               />
             </Marker>
@@ -154,54 +201,47 @@ export default function MapFeature({ currentUser }) {
                   <p>{point.label}</p>
                   <label htmlFor="description">Description</label>
                   <p>{point.description}</p>
-                  <button>Edit</button>
-                  <button>Delete</button>
+                  <button
+                    onClick={() => {
+                      handleEdit(point);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleShowDelete(point);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               </Popup>
             )}
           </div>
         ))}
-        {newPlace && (
-          <Popup
-            longitude={newPlace.lng}
-            latitude={newPlace.lat}
-            anchor="top"
-            closeButton={true}
-            closeOnClick={false}
-            onClose={() => setCurrentPlaceId(null)}
-          >
-            <div>
-              <form onSubmit={handleSave}>
-                <div>
-                  <label htmlFor="label">Choose a category</label>
-                  <br />
-                  <select
-                    name="label"
-                    id="label"
-                    onChange={(event) => setLabel(event.target.value)}
-                  >
-                    <option value="restaurant">Restaurant</option>
-                    <option value="cafe">Cafe</option>
-                    <option value="sightseeing">Sightseeing</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="activity">Activity</option>
-                  </select>
-                </div>
-                <label htmlFor="description">Description</label>
-                <br />
-                <textarea
-                  name="description"
-                  id="description"
-                  cols="20"
-                  rows="5"
-                  onChange={(event) => setDescription(event.target.value)}
-                ></textarea>
-                <button type="submit">Save</button>
-              </form>
-            </div>
-          </Popup>
-        )}
+        <AddMap
+          newPlace={newPlace}
+          setCurrentPlaceId={setCurrentPlaceId}
+          handleSave={handleSave}
+          setLabel={setLabel}
+          setDescription={setDescription}
+          setNewPlace={setNewPlace}
+        />
+        <EditMap
+          editPoint={editPoint}
+          setCurrentPlaceId={setCurrentPlaceId}
+          setEditPoint={setEditPoint}
+          handleEditSave={handleEditSave}
+        />
       </Map>
+      {showDelete && (
+        <DeleteMap
+          handleDelete={handleDelete}
+          pointId={pointId}
+          setShowDelete={setShowDelete}
+        />
+      )}
     </div>
   );
 }

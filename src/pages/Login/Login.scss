@@ -1,10 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-p {
-  font-family: "Kalam", sans-serif;
-}
-
 .login-page {
   min-height: 100vh;
   display: flex;
@@ -54,7 +50,6 @@ p {
     margin-top: 0.4rem;
     font-size: 1.75rem;
     align-self: center;
-    font-family: "Kalam", sans-serif;
     font-weight: 400;
   }
 

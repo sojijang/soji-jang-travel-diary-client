@@ -56,17 +56,14 @@ const postMapPoint = async (newMapPoint) => {
   return data;
 };
 
-const editMapPoint = async (map_pointId, updatedMapPoint) => {
-  const response = await axios.put(
-    `${baseURL}/map/${map_pointId}`,
-    updatedMapPoint
-  );
+const editMapPoint = async (pointId, updatedPoint) => {
+  const response = await axios.put(`${baseURL}/map/${pointId}`, updatedPoint);
 
   return response;
 };
 
-const deleteMapPoint = async (map_pointId) => {
-  await axios.delete(`${baseURL}/map/${map_pointId}`);
+const deleteMapPoint = async (pointId) => {
+  await axios.delete(`${baseURL}/map/${pointId}`);
 };
 
 export {

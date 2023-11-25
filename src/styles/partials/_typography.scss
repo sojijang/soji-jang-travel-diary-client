@@ -5,20 +5,42 @@
 //   font-style: light;
 // }
 
+// @font-face {
+//   font-family: "Kalam";
+//   src: url("../../assets/fonts/Kalam-Regular.ttf") format("truetype");
+//   font-weight: 400;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: "Kalam";
+//   src: url("../../assets/fonts/Kalam-Bold.ttf") format("truetype");
+//   font-weight: 700;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: "Handlee";
+//   src: url("../../assets/fonts/Handlee-Regular.ttf")
+//     format("application/x-font-ttf");
+//   font-weight: 400;
+//   font-style: normal;
+// }
+
 @font-face {
-  font-family: "Kalam";
-  src: url("../../assets/fonts/Kalam-Regular.ttf") format("truetype");
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/TitilliumWeb-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Kalam";
-  src: url("../../assets/fonts/Kalam-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/TitilliumWeb-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: bold;
 }
 
 body {
-  font-family: "Kalam", sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }

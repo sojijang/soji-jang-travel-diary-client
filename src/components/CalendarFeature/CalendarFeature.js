@@ -76,6 +76,7 @@ export default function CalendarFeature({ currentUser }) {
     setDate(date.toISOString().split("T")[0]);
   };
 
+  // check here
   const getCalendarActivity = async () => {
     try {
       const data = await fetchCalendarActivity();
