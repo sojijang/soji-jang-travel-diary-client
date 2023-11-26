@@ -4,7 +4,6 @@ import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
 import { SearchBox } from "@mapbox/search-js-react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
 import LocationPin from "../../assets/icons/location_6675274.png";
 import EditMap from "../../components/EditMap/EditMap";
 import AddMap from "../AddMap/AddMap";

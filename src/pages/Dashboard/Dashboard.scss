@@ -2,27 +2,19 @@
 @use "../../styles/partials/mixins" as *;
 
 .dashboard {
+  &__wrapper {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
   &__title {
     text-align: center;
+    margin: 0.5rem;
   }
 
-  &__login-icon {
+  &__image {
     width: 3rem;
     height: 3rem;
-    position: absolute;
-    right: 14px;
-    top: 15px;
-  }
-
-  &__login-text {
-    margin: 0;
-    padding-top: 4.2rem;
-    padding-right: 1rem;
-    text-align: right;
-  }
-
-  &__link {
-    text-decoration: none;
-    color: black;
   }
 }

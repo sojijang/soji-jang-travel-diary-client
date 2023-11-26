@@ -2,11 +2,14 @@
 @use "../../styles/partials/mixins" as *;
 
 .footer {
+  margin-top: 1rem;
+  border-top: 0.15rem solid #888888;
+
   &__wrapper {
     display: flex;
     justify-content: center;
     gap: 5rem;
-    margin-top: 2rem;
+    padding: 1rem 0;
   }
   &__calendar-icon {
     width: 3rem;
