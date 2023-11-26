@@ -8,10 +8,21 @@
     display: flex;
     justify-content: left;
     gap: 0.7rem;
+    padding: 1rem;
+    border-bottom-left-radius: 0.9375rem 15.9375rem;
+    border-bottom-right-radius: 15.9375rem 0.9375rem;
+    border-top-left-radius: 15.9375rem 0.9375rem;
+    border-top-right-radius: 0.9375rem 15.9375rem;
+    border-style: solid;
+    box-shadow: rgba(0, 0, 0, 0.2) 0.9375rem 1.75rem 1.5625rem -1.125rem;
   }
 
   &__pound-icon {
     width: 3rem;
     height: 3rem;
+  }
+
+  &__text {
+    color: #495057;
   }
 }

@@ -3,7 +3,8 @@
 
 .footer {
   margin-top: 1rem;
-  border-top: 0.15rem solid #888888;
+  border-top: 0.15rem solid;
+  border-top-left-radius: 15.9375rem 0.625rem;
 
   &__wrapper {
     display: flex;
@@ -14,10 +15,24 @@
   &__calendar-icon {
     width: 3rem;
     height: 3rem;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.3);
+      transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.3);
+    }
   }
 
   &__map-icon {
     width: 3rem;
     height: 3rem;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.3);
+      transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.3);
+    }
   }
 }

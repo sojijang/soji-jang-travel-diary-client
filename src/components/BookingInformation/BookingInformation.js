@@ -9,6 +9,8 @@ import {
   editFlight,
   deleteFlight,
 } from "../../utils/API";
+import FlightTicket from "../../assets/icons/ticket_7591340.svg";
+import AddIcon from "../../assets/icons/add_7277293.svg";
 
 Modal.setAppElement("#root");
 
@@ -124,13 +126,27 @@ export default function BookingInformation({ currentUser }) {
   };
 
   return (
-    <article>
-      <div>
-        <h2>Booking Information</h2>
-        <p>Please log in to save booking information</p>
-        <button onClick={openModal}>Add Flight</button>
-        <br />
-        <button onClick={openInfo}>Click to see</button>
+    <article className="booking">
+      <div className="booking__container">
+        <div className="booking__wrapper">
+          <img
+            className="booking__icon"
+            src={FlightTicket}
+            alt="Flight ticket"
+          />
+          <h2 className="booking__title">Booking Information</h2>
+        </div>
+        <div className="booking__wrapper booking__info">
+          <img
+            onClick={openModal}
+            className="booking__add-icon"
+            src={AddIcon}
+            alt="Add icon"
+          />
+          <button onClick={openInfo} className="booking__button">
+            See flight here
+          </button>
+        </div>
       </div>
       <AddBooking
         isOpen={isOpen}

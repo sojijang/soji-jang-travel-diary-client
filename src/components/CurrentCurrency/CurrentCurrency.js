@@ -23,15 +23,19 @@ export default function CurrentCurrency() {
 
   return (
     <article className="current-currency">
-      {/* <h2 className="current-currency__title">Current Currency</h2> */}
       <div className="current-currency__box">
-        <img className="current-currency__pound-icon" src={PoundIcon} alt="" />
+        <img
+          className="current-currency__pound-icon"
+          src={PoundIcon}
+          alt="Poind icon"
+        />
         <div>
           {isLoading ? (
             <p>Loading...</p>
           ) : (
             <p>
-              <b>Current GBP</b> : £ {poundCurrency}
+              <b className="current-currency__text">Current GBP</b> : £{" "}
+              {poundCurrency}
             </p>
           )}
         </div>

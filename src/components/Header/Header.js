@@ -12,10 +12,11 @@ export default function Header() {
   }
   return (
     <header className="header">
-      <Link className="header__link" to="/login">
-        <img className="header__login-icon" src={LoginIcon} alt="Login" />
-      </Link>
-      <div className="header__border"></div>
+      <div className="header__wrapper">
+        <Link className="header__link" to="/login">
+          <button className="header__button">Login</button>
+        </Link>
+      </div>
     </header>
   );
 }
