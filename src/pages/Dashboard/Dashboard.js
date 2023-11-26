@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import LoginIcon from "../../assets/icons/pencil_12702283.svg";
 import BookingInformation from "../../components/BookingInformation/BookingInformation";
 
-export default function Dashboard() {
+export default function Dashboard({ currentUser }) {
   return (
     <main className="dashboard">
       <Link className="dashboard__link" to="/login">
@@ -15,7 +15,7 @@ export default function Dashboard() {
       <h2 className="dashboard__title">Welcome to London</h2>
       <CurrentCurrency />
       <CurrencyConversion />
-      <BookingInformation />
+      <BookingInformation currentUser={currentUser} />
     </main>
   );
 }

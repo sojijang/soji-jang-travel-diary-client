@@ -1,6 +1,18 @@
 import "./AddBooking.scss";
 import ReactDOM from "react-dom";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
+import DateTimePicker from "react-datetime-picker";
+import "react-datetime-picker/dist/DateTimePicker.css";
+import "react-calendar/dist/Calendar.css";
+import "react-clock/dist/Clock.css";
+import {
+  fetchFlight,
+  fetchOneFlight,
+  postFlight,
+  editFlight,
+  deleteFlight,
+} from "../../utils/API";
 
 const customStyles = {
   //   content: {
@@ -16,7 +28,19 @@ const customStyles = {
   },
 };
 
-export default function AddBooking({ isOpen, closeModal, handleSave }) {
+export default function AddBooking({
+  isOpen,
+  closeModal,
+  handleSubmit,
+  handleDepartureETD,
+  departureETD,
+  handleDepartureETA,
+  departureETA,
+  handleArrivalETD,
+  arrivalETD,
+  handleArrivalETA,
+  arrivalETA,
+}) {
   return (
     <Modal
       isOpen={isOpen}
@@ -29,7 +53,7 @@ export default function AddBooking({ isOpen, closeModal, handleSave }) {
       </button>
       <div>
         <h3>Flight</h3>
-        <form onSubmit={handleSave}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="departure">Departure</label>
           <br />
           <input
@@ -39,30 +63,54 @@ export default function AddBooking({ isOpen, closeModal, handleSave }) {
             placeholder="Departure Location"
           />
           <br />
-          <label htmlFor="ETD">Time</label>
+          <label htmlFor="departure_ETD">ETD</label>
           <br />
-          <input type="text" id="ETD" name="ETD" placeholder="ETD" />
+          <div>
+            <DateTimePicker
+              onChange={handleDepartureETD}
+              value={departureETD}
+              format="y-MM-dd H:mm"
+            />
+          </div>
+          <label htmlFor="departure_ETA">ETA</label>
           <br />
-          <label htmlFor="ETA">Time</label>
-          <br />
-          <input type="text" id="ETA" name="ETA" placeholder="ETA" />
-          <br />
+          <div>
+            <DateTimePicker
+              onChange={handleDepartureETA}
+              value={departureETA}
+              format="y-MM-dd H:mm"
+            />
+          </div>
           <label htmlFor="Arrival">Arrival</label>
           <br />
           <input
             type="text"
-            id="Arrival"
-            name="Arrival"
+            id="arrival"
+            name="arrival"
             placeholder="Arrival Location"
           />
           <br />
-          <label htmlFor="ETD">Time</label>
+          <label htmlFor="Arrival_ETD">ETD</label>
           <br />
-          <input type="text" id="ETD" name="ETD" placeholder="ETD" />
+          <div>
+            <DateTimePicker
+              onChange={handleArrivalETD}
+              value={arrivalETD}
+              format="y-MM-dd H:mm"
+            />
+          </div>
+          <label htmlFor="Arrival_ETA">ETA</label>
           <br />
-          <label htmlFor="ETA">Time</label>
+          <div>
+            <DateTimePicker
+              onChange={handleArrivalETA}
+              value={arrivalETA}
+              format="y-MM-dd H:mm"
+            />
+          </div>
+          <label htmlFor="budget">Budget</label>
           <br />
-          <input type="text" id="ETA" name="ETA" placeholder="ETA" />
+          <input type="text" id="budget" name="budget" placeholder="Budget" />
           <br />
           <button type="submit">Save</button>
         </form>

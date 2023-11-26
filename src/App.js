@@ -25,7 +25,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CountrySelection />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={<Dashboard currentUser={currentUser} />}
+          />
           <Route
             path="/login"
             element={<Login setCurrentUser={setCurrentUser} />}
