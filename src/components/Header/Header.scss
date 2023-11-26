@@ -4,11 +4,15 @@
 .header {
   width: 100%;
   height: 4.5rem;
+  &__image {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 
   &__wrapper {
     display: flex;
-    justify-content: end;
-    padding: 1rem;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
   }
 
   &__link {
