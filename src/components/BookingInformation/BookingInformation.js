@@ -1,7 +1,6 @@
 import "./BookingInformation.scss";
 import AddBooking from "../AddBooking/AddBooking";
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import {
   fetchFlight,

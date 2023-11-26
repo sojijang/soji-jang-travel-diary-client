@@ -13,9 +13,11 @@ import EventDetails from "../EventDetails/EventDetails";
 import AddEvent from "../AddEvent/AddEvent";
 import EditEvent from "../EditEvent/EditEvent";
 import DeleteEvent from "../DeleteEvent/DeleteEvent";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 export default function CalendarFeature({ currentUser }) {
-  const [showAddActivity, setShowAddActivity] = useState(false);
   const [showEvent, setShowEvent] = useState(false);
   const [eventDetails, setEventDetails] = useState({});
   const [plans, setPlans] = useState([]);
@@ -26,13 +28,50 @@ export default function CalendarFeature({ currentUser }) {
   const [afternoonTask, setAfternoonTask] = useState("");
   const [budget, setBudget] = useState("");
 
-  const [showEditEvent, setShowEditEvent] = useState(false);
-  const [showEditDelete, setShowEditDelete] = useState(false);
   const [calendarActivities, setCalendarActivities] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const [startDate, setStartDate] = useState(new Date());
   const [activityId, setActivityId] = useState(null);
+
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+  const openAddModal = () => {
+    setIsAddOpen(true);
+  };
+
+  const openEditModal = () => {
+    setIsEditOpen(true);
+  };
+
+  const openDetailModal = () => {
+    setIsDetailOpen(true);
+  };
+
+  const openDeleteModal = () => {
+    setIsDeleteOpen(true);
+  };
+
+  const closeAddModal = () => {
+    setIsAddOpen(false);
+  };
+
+  const closeEditModal = () => {
+    setIsEditOpen(false);
+    setIsDetailOpen(false);
+  };
+
+  const closeDetailModal = () => {
+    setIsDetailOpen(false);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteOpen(false);
+    setIsDetailOpen(false);
+  };
 
   useEffect(() => {
     const fetchAllPlans = async () => {
@@ -64,11 +103,7 @@ export default function CalendarFeature({ currentUser }) {
     });
 
     setActivityId(clickInfo.event.id);
-
-    setShowEvent(true);
-    setShowEditEvent(false);
-    setShowAddActivity(false);
-    setShowEditDelete(false);
+    openDetailModal();
   };
 
   const handleDateSelect = (date) => {
@@ -125,10 +160,10 @@ export default function CalendarFeature({ currentUser }) {
           display: "background",
         },
       ]);
-      setShowAddActivity(false);
     } catch (error) {
       console.error("Error submitting activity:", error);
     }
+    closeAddModal();
   };
 
   const handleSave = async (event) => {
@@ -173,29 +208,6 @@ export default function CalendarFeature({ currentUser }) {
     } catch (error) {
       console.error(error);
     }
-
-    setShowEditDelete(false);
-  };
-
-  const handleAddClick = () => {
-    setShowAddActivity(true);
-    setShowEvent(false);
-    setShowEditEvent(false);
-    setShowEditDelete(false);
-  };
-
-  const handleShowEdit = () => {
-    setShowEditEvent(true);
-    setShowEvent(false);
-    setShowAddActivity(false);
-    setShowEditDelete(false);
-  };
-
-  const handleShowDelete = () => {
-    setShowEditDelete(true);
-    setShowEvent(false);
-    setShowEditEvent(false);
-    setShowAddActivity(false);
   };
 
   //styling
@@ -215,8 +227,8 @@ export default function CalendarFeature({ currentUser }) {
   }
 
   return (
-    <main className="calendar">
-      <section className="calendar-feature">
+    <section className="calendar">
+      <article className="calendar-feature">
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -224,31 +236,12 @@ export default function CalendarFeature({ currentUser }) {
           eventClick={handleEventClick}
           events={plans}
         />
-      </section>
-      <button className="calendar-feature__button" onClick={handleAddClick}>
+      </article>
+      <button className="calendar-feature__button" onClick={openAddModal}>
         Add
       </button>
-      {showEvent && (
-        <EventDetails
-          eventDetails={eventDetails}
-          setShowEvent={setShowEvent}
-          handleShowEdit={handleShowEdit}
-          handleShowDelete={handleShowDelete}
-        />
-      )}
-      {showEditDelete && (
-        <DeleteEvent handleDelete={handleDelete} activityId={activityId} />
-      )}
-      {showEditEvent && (
-        <EditEvent
-          eventDetails={eventDetails}
-          setEventDetails={setEventDetails}
-          handleSave={handleSave}
-        />
-      )}
-      {showAddActivity && (
+      <article className="add-popup">
         <AddEvent
-          setShowAddActivity={setShowAddActivity}
           startDate={startDate}
           handleDateSelect={handleDateSelect}
           setLocation={setLocation}
@@ -256,8 +249,36 @@ export default function CalendarFeature({ currentUser }) {
           setAfternoonTask={setAfternoonTask}
           setBudget={setBudget}
           handleSubmit={handleSubmit}
+          isAddOpen={isAddOpen}
+          closeAddModal={closeAddModal}
         />
-      )}
-    </main>
+      </article>
+      <article className="detail-popup">
+        <EventDetails
+          eventDetails={eventDetails}
+          isDetailOpen={isDetailOpen}
+          openEditModal={openEditModal}
+          closeDetailModal={closeDetailModal}
+          openDeleteModal={openDeleteModal}
+        />
+      </article>
+      <article className="delete-popup">
+        <DeleteEvent
+          handleDelete={handleDelete}
+          activityId={activityId}
+          isDeleteOpen={isDeleteOpen}
+          closeDeleteModal={closeDeleteModal}
+        />
+      </article>
+      <article className="edit-popup">
+        <EditEvent
+          eventDetails={eventDetails}
+          setEventDetails={setEventDetails}
+          handleSave={handleSave}
+          isEditOpen={isEditOpen}
+          closeEditModal={closeEditModal}
+        />
+      </article>
+    </section>
   );
 }
