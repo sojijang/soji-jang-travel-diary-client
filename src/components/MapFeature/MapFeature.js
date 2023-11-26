@@ -8,14 +8,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import LocationPin from "../../assets/icons/location_6675274.png";
 import EditMap from "../../components/EditMap/EditMap";
 import AddMap from "../AddMap/AddMap";
+import DeleteMap from "../DeleteMap/DeleteMap";
 import {
   fetchMapPoint,
-  fetchOneMapPoint,
   postMapPoint,
   editMapPoint,
   deleteMapPoint,
 } from "../../utils/API";
-import DeleteMap from "../DeleteMap/DeleteMap";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 export default function MapFeature({ currentUser }) {
   const [viewState, setViewState] = useState({
@@ -33,7 +35,16 @@ export default function MapFeature({ currentUser }) {
   const [editPoint, setEditPoint] = useState(null);
   const [pointId, setPointId] = useState(null);
 
-  const [showDelete, setShowDelete] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = (point) => {
+    setPointId(point.id);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const getPoints = async () => {
@@ -120,11 +131,6 @@ export default function MapFeature({ currentUser }) {
     }
   };
 
-  const handleShowDelete = (point) => {
-    setShowDelete(true);
-    setPointId(point.id);
-  };
-
   const handleDelete = async (pointId) => {
     try {
       await deleteMapPoint(pointId);
@@ -135,7 +141,6 @@ export default function MapFeature({ currentUser }) {
 
       setCurrentPlaceId(null);
       setEditPoint(null);
-      setShowDelete(false);
     } catch (error) {
       console.error(error);
     }
@@ -182,7 +187,7 @@ export default function MapFeature({ currentUser }) {
                 alt="Marker"
                 onClick={() => {
                   handleClickMarker(point.id);
-                  setShowDelete(false);
+                  setIsOpen(false);
                 }}
               />
             </Marker>
@@ -210,7 +215,7 @@ export default function MapFeature({ currentUser }) {
                   </button>
                   <button
                     onClick={() => {
-                      handleShowDelete(point);
+                      openModal(point);
                     }}
                   >
                     Delete
@@ -235,13 +240,12 @@ export default function MapFeature({ currentUser }) {
           handleEditSave={handleEditSave}
         />
       </Map>
-      {showDelete && (
-        <DeleteMap
-          handleDelete={handleDelete}
-          pointId={pointId}
-          setShowDelete={setShowDelete}
-        />
-      )}
+      <DeleteMap
+        handleDelete={handleDelete}
+        pointId={pointId}
+        isOpen={isOpen}
+        closeModal={closeModal}
+      />
     </div>
   );
 }

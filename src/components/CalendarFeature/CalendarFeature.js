@@ -18,7 +18,6 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 export default function CalendarFeature({ currentUser }) {
-  const [showEvent, setShowEvent] = useState(false);
   const [eventDetails, setEventDetails] = useState({});
   const [plans, setPlans] = useState([]);
 
