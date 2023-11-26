@@ -66,6 +66,36 @@ const deleteMapPoint = async (pointId) => {
   await axios.delete(`${baseURL}/map/${pointId}`);
 };
 
+const fetchFlight = async () => {
+  const { data } = await axios.get(`${baseURL}/flight`);
+  return data;
+};
+
+const fetchOneFlight = async (flightId) => {
+  const { data } = await axios.get(`${baseURL}/flight/${flightId}`);
+  return data;
+};
+
+const postFlight = async (newFlight) => {
+  const { data } = await axios.post(`${baseURL}/flight`, {
+    ...newFlight,
+  });
+  return data;
+};
+
+const editFlight = async (flightId, updatedFlight) => {
+  const response = await axios.put(
+    `${baseURL}/flight/${flightId}`,
+    updatedFlight
+  );
+
+  return response;
+};
+
+const deleteFlight = async (flightId) => {
+  await axios.delete(`${baseURL}/flight/${flightId}`);
+};
+
 export {
   fetchCurrentCurrency,
   fetchCalendarActivity,
@@ -78,4 +108,9 @@ export {
   postMapPoint,
   editMapPoint,
   deleteMapPoint,
+  fetchFlight,
+  fetchOneFlight,
+  postFlight,
+  editFlight,
+  deleteFlight,
 };
