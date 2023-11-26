@@ -22,9 +22,6 @@ export default function BookingInformation({ currentUser }) {
   const [departureETA, setDepartureETA] = useState(new Date());
   const [arrivalETD, setArrivalETD] = useState(new Date());
   const [arrivalETA, setArrivalETA] = useState(new Date());
-  // const [departureLocation, setDepartureLocation] = useState("");
-  // const [arrivalLocation, setArrivalLocation] = useState("");
-  // const [budget, setBudget] = useState("");
 
   const openModal = () => {
     setIsOpen(true);
@@ -38,15 +35,18 @@ export default function BookingInformation({ currentUser }) {
     setShowInfo(!showInfo);
   };
 
-  const formatDateForBackend = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
+  const formatDateForBackend = (dateString) => {
+    const date = new Date(dateString);
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
+    const day = date.getUTCDate().toString().padStart(2, "0");
+    const hours = date.getUTCHours().toString().padStart(2, "0");
+    const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:00`;
+
+    return formattedDate;
   };
 
   const handleDepartureETD = (date) => {
@@ -90,35 +90,38 @@ export default function BookingInformation({ currentUser }) {
     const newFlight = {
       user_id: currentUser,
       departure_location: event.target.departure.value,
-      departure_etd: departureETD,
-      departure_eta: departureETA,
+      departure_etd: formatDateForBackend(departureETD),
+      departure_eta: formatDateForBackend(departureETA),
       return_location: event.target.arrival.value,
-      return_etd: arrivalETD,
-      return_eta: arrivalETA,
+      return_etd: formatDateForBackend(arrivalETD),
+      return_eta: formatDateForBackend(arrivalETA),
       budget: parsedBudget,
     };
 
     try {
-      console.log("Request Payload:", newFlight);
-
       const data = await postFlight(newFlight);
-      console.log("Flight submitted successfully:", data);
+
+      console.log(data);
+      setFlights([...flights, data]);
     } catch (error) {
-      console.error("Error submitting flight:", error);
+      console.error(error.response.data);
     }
   };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const options = {
-      month: "numeric",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    };
-    return date.toLocaleDateString(undefined, options);
+
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    const formattedDate = `${year}/${month}/${day}, ${hours}:${minutes} ${
+      date.getHours() >= 12 ? "PM" : "AM"
+    }`;
+
+    return formattedDate;
   };
 
   return (
@@ -148,7 +151,7 @@ export default function BookingInformation({ currentUser }) {
           <h3>Flight</h3>
           {flights.map((flight) => (
             <div key={flight.id}>
-              <p>Departure: {flight.depature_location}</p>
+              <p>Departure: {flight.departure_location}</p>
               <p>ETD: {formatDate(flight.departure_etd)}</p>
               <p>ETA: {formatDate(flight.departure_eta)}</p>
               <p>Arrival: {flight.return_location}</p>
@@ -157,11 +160,6 @@ export default function BookingInformation({ currentUser }) {
               <p>Budget: {flight.budget}</p>
             </div>
           ))}
-          <div>
-            <h3>Hotel</h3>
-            <p>Location</p>
-            <p>Date</p>
-          </div>
           <button onClick={openModal}>Add more</button>
         </div>
       )}

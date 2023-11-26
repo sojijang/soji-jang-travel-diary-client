@@ -1,18 +1,9 @@
 import "./AddBooking.scss";
-import ReactDOM from "react-dom";
-import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import DateTimePicker from "react-datetime-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
-import {
-  fetchFlight,
-  fetchOneFlight,
-  postFlight,
-  editFlight,
-  deleteFlight,
-} from "../../utils/API";
 
 const customStyles = {
   //   content: {
