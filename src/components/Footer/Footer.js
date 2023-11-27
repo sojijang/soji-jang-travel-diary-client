@@ -1,8 +1,8 @@
 import "./Footer.scss";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import CalendarIcon from "../../assets/icons/scoreboard_157554.svg";
-import MapIcon from "../../assets/icons/map_2204655.svg";
+import CalendarIcon from "../../assets/icons/deadline_674292.svg";
+import MapIcon from "../../assets/icons/map_7145349.svg";
 
 export default function Footer() {
   const location = useLocation();

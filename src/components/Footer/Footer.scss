@@ -2,9 +2,8 @@
 @use "../../styles/partials/mixins" as *;
 
 .footer {
-  margin-top: 1rem;
-  border-top: 0.15rem solid;
-  border-top-left-radius: 15.9375rem 0.625rem;
+  margin-top: 0.5rem;
+  @include card;
 
   &__wrapper {
     display: flex;
@@ -15,24 +14,10 @@
   &__calendar-icon {
     width: 3rem;
     height: 3rem;
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.3);
-      transform: translate3d(0, 2px, 0);
-    }
-    &:focus {
-      box-shadow: rgba(0, 0, 0, 0.3);
-    }
+    @include hover-state;
   }
 
   &__map-icon {
-    width: 3rem;
-    height: 3rem;
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.3);
-      transform: translate3d(0, 2px, 0);
-    }
-    &:focus {
-      box-shadow: rgba(0, 0, 0, 0.3);
-    }
+    @extend .footer__calendar-icon;
   }
 }

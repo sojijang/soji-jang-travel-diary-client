@@ -4,15 +4,17 @@
 .header {
   width: 100%;
   height: 4.5rem;
+
   &__image {
     width: 2.5rem;
     height: 2.5rem;
+    @include hover-state;
   }
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 2rem;
+    padding: 0.7rem 2rem;
   }
 
   &__link {
@@ -20,37 +22,11 @@
     color: black;
   }
 
-  &__login-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    position: absolute;
-    right: 14px;
-    top: 15px;
-  }
-
   &__button {
-    height: 2.5rem;
-    background-color: #fff;
-    border-style: solid;
-    box-shadow: rgba(0, 0, 0, 0.2) 0.9375rem 1.75rem 1.5625rem -1.125rem;
-    color: #41403e;
-    cursor: pointer;
-    display: inline-block;
+    @include button;
+    height: 2rem;
     font-size: 0.8rem;
     font-family: $secondary-font;
-    outline: none;
-    padding: 0.75rem;
-    border-bottom-left-radius: 0.9375rem 15.9375rem;
-    border-bottom-right-radius: 15.9375rem 0.9375rem;
-    border-top-left-radius: 15.9375rem 0.9375rem;
-    border-top-right-radius: 0.9375rem 15.9375rem;
-    touch-action: manipulation;
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.3) 0.125rem 0.5rem 0.5rem -0.3125rem;
-      transform: translate3d(0, 2px, 0);
-    }
-    &:focus {
-      box-shadow: rgba(0, 0, 0, 0.3) 0.125rem 0.5rem 0.25rem -0.375rem;
-    }
+    margin-top: 0.5rem;
   }
 }

@@ -2,7 +2,7 @@ import "./CurrencyConversion.scss";
 import { useEffect, useState } from "react";
 import { fetchCurrentCurrency } from "../../utils/API";
 import ConvertIcon from "../../assets/icons/money_10189352.svg";
-import IntoIcon from "../../assets/icons/equal_402583.svg";
+import IntoIcon from "../../assets/icons/equal_9742566.svg";
 
 export default function CurrencyConversion() {
   const [allCurrencyCodes, setAllCurrencyCodes] = useState([]);

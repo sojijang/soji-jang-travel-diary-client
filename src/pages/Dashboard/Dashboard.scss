@@ -6,7 +6,7 @@
     display: flex;
     gap: 0.5rem;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   &__title {
@@ -19,9 +19,12 @@
     width: 3rem;
     height: 3rem;
     &--back {
+      position: absolute;
+      bottom: -25%;
+      left: -6%;
+      width: 2rem;
+      height: 2rem;
       margin-left: 2rem;
     }
   }
-
-
 }

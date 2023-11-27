@@ -10,7 +10,6 @@ import {
   deleteFlight,
 } from "../../utils/API";
 import FlightTicket from "../../assets/icons/ticket_7591340.svg";
-import AddIcon from "../../assets/icons/add_7277293.svg";
 
 Modal.setAppElement("#root");
 

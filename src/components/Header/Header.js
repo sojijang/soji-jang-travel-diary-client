@@ -1,6 +1,6 @@
 import "./Header.scss";
 import { Link } from "react-router-dom";
-import LogoIcon from "../../assets/icons/pen_12958.svg";
+import LogoIcon from "../../assets/icons/writing_5560402.svg";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {

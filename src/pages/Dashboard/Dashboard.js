@@ -1,4 +1,5 @@
 import "./Dashboard.scss";
+import { Link } from "react-router-dom";
 import CurrentCurrency from "../../components/CurrentCurrency/CurrentCurrency";
 import CurrencyConversion from "../../components/CurrencyConversion/CurrencyConversion";
 import BookingInformation from "../../components/BookingInformation/BookingInformation";
@@ -19,7 +20,13 @@ export default function Dashboard({ currentUser }) {
       <CurrentCurrency />
       <CurrencyConversion />
       <BookingInformation currentUser={currentUser} />
-      <img className="dashboard__image dashboard__image--back" src={BackIcon} alt="Back icon" />
+      <Link className="dashboard__link" to="/">
+        <img
+          className="dashboard__image--back"
+          src={BackIcon}
+          alt="Back icon"
+        />
+      </Link>
     </main>
   );
 }
