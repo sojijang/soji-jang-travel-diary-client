@@ -12,10 +12,16 @@
   &__title {
     text-align: center;
     margin: 0.5rem;
+    font-family: $primary-font;
   }
 
   &__image {
     width: 3rem;
     height: 3rem;
+    &--back {
+      margin-left: 2rem;
+    }
   }
+
+
 }

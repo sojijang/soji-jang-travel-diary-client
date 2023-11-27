@@ -29,7 +29,7 @@
   }
 
   &__button {
-    height: 2.75rem;
+    height: 2.5rem;
     background-color: #fff;
     border-style: solid;
     box-shadow: rgba(0, 0, 0, 0.2) 0.9375rem 1.75rem 1.5625rem -1.125rem;
@@ -37,6 +37,7 @@
     cursor: pointer;
     display: inline-block;
     font-size: 0.8rem;
+    font-family: $secondary-font;
     outline: none;
     padding: 0.75rem;
     border-bottom-left-radius: 0.9375rem 15.9375rem;

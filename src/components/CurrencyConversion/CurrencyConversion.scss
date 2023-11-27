@@ -7,29 +7,26 @@
   gap: 1rem;
 
   &__wrapper {
+    @include card;
     display: flex;
     gap: 1rem;
-    padding: 1rem;
-    border-bottom-left-radius: 0.9375rem 15.9375rem;
-    border-bottom-right-radius: 15.9375rem 0.9375rem;
-    border-top-left-radius: 15.9375rem 0.9375rem;
-    border-top-right-radius: 0.9375rem 15.9375rem;
-    border-style: solid;
-    box-shadow: rgba(0, 0, 0, 0.2) 0.9375rem 1.75rem 1.5625rem -1.125rem;
+    padding: 1.25rem;
   }
 
   &__input {
-    border: 1px solid #333;
-    border-radius: 0.25rem;
-    padding: 0.25rem;
-    width: 8rem;
+    @include input;
+    width: 7.5rem;
     margin-right: 1rem;
+    background: 0 0;
+    font-family: $primary-font;
   }
 
   &__select {
+    @include select;
     margin-top: 1rem;
-    padding: 0.15rem;
-    border-radius: 0.25rem;
+    background: 0 0;
+    font-size: 1rem;
+    font-family: $primary-font;
   }
 
   &__icon {

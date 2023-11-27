@@ -31,71 +31,112 @@ export default function AddBooking({
       style={customStyles}
       shouldCloseOnOverlayClick={false}
     >
-      <button onClick={closeModal} style={customStyles}>
-        close
+      <button
+        className="add-booking__button add-booking__button--close"
+        onClick={closeModal}
+        style={customStyles}
+      >
+        Close
       </button>
-      <div>
-        <h3>Flight</h3>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="departure">Departure</label>
-          <br />
-          <input
-            type="text"
-            id="departure"
-            name="departure"
-            placeholder="Departure Location"
-          />
-          <br />
-          <label htmlFor="departure_ETD">ETD</label>
-          <br />
-          <div>
+      <div className="add-booking__container">
+        <form onSubmit={handleSubmit} className="add-booking__form">
+          <div className="add-booking__wrapper">
+            <label htmlFor="departure" className="add-booking__label">
+              Departure
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
+            <input
+              type="text"
+              id="departure"
+              name="departure"
+              className="add-booking__input"
+            />
+          </div>
+          <div className="add-booking__wrapper">
+            <label htmlFor="departure_ETD" className="add-booking__label">
+              ETD
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
             <DateTimePicker
               onChange={handleDepartureETD}
               value={departureETD}
               format="y-MM-dd H:mm"
+              className="add-booking__select"
             />
           </div>
-          <label htmlFor="departure_ETA">ETA</label>
-          <br />
-          <div>
+          <div className="add-booking__wrapper">
+            <label htmlFor="departure_ETA" className="add-booking__label">
+              ETA
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
             <DateTimePicker
               onChange={handleDepartureETA}
               value={departureETA}
               format="y-MM-dd H:mm"
+              className="add-booking__select"
             />
           </div>
-          <label htmlFor="Arrival">Arrival</label>
-          <br />
-          <input
-            type="text"
-            id="arrival"
-            name="arrival"
-            placeholder="Arrival Location"
-          />
-          <br />
-          <label htmlFor="Arrival_ETD">ETD</label>
-          <br />
-          <div>
+          <div className="add-booking__wrapper">
+            <label htmlFor="Arrival" className="add-booking__label">
+              Arrival
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
+            <input
+              type="text"
+              id="arrival"
+              name="arrival"
+              className="add-booking__input"
+            />
+          </div>
+          <div className="add-booking__wrapper">
+            <label htmlFor="Arrival_ETD" className="add-booking__label">
+              ETD
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
             <DateTimePicker
               onChange={handleArrivalETD}
               value={arrivalETD}
               format="y-MM-dd H:mm"
+              className="add-booking__select"
             />
           </div>
-          <label htmlFor="Arrival_ETA">ETA</label>
-          <br />
-          <div>
+          <div className="add-booking__wrapper">
+            <label htmlFor="Arrival_ETA" className="add-booking__label">
+              ETA
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
             <DateTimePicker
               onChange={handleArrivalETA}
               value={arrivalETA}
               format="y-MM-dd H:mm"
+              className="add-booking__select"
             />
           </div>
-          <label htmlFor="budget">Budget</label>
-          <br />
-          <input type="text" id="budget" name="budget" placeholder="Budget" />
-          <br />
-          <button type="submit">Save</button>
+          <div className="add-booking__wrapper">
+            <label htmlFor="budget" className="add-booking__label">
+              Budget
+            </label>
+          </div>
+          <div className="add-booking__wrapper">
+            <input
+              type="text"
+              id="budget"
+              name="budget"
+              className="add-booking__input"
+            />
+          </div>
+          <button
+            type="submit"
+            className="add-booking__button add-booking__button--save"
+          >
+            Save
+          </button>
         </form>
       </div>
     </Modal>

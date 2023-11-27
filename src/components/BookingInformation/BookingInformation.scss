@@ -2,6 +2,8 @@
 @use "../../styles/partials/mixins" as *;
 
 .booking {
+  font-family: $primary-font;
+
   &__wrapper {
     display: flex;
     justify-content: center;
@@ -18,27 +20,9 @@
   }
 
   &__button {
-    align-self: center;
-    background-color: #fff;
-    border-style: solid;
-    box-shadow: rgba(0, 0, 0, 0.2) 0.9375rem 1.75rem 1.5625rem -1.125rem;
-    color: #41403e;
-    cursor: pointer;
+    @include button;
     font-size: 0.9rem;
-    outline: none;
-    padding: 0.75rem;
-    border-bottom-left-radius: 0.9375rem 15.9375rem;
-    border-bottom-right-radius: 15.9375rem 0.9375rem;
-    border-top-left-radius: 15.9375rem 0.9375rem;
-    border-top-right-radius: 0.9375rem 15.9375rem;
-    touch-action: manipulation;
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.3) 0.125rem 0.5rem 0.5rem -0.3125rem;
-      transform: translate3d(0, 0.125rem, 0);
-    }
-    &:focus {
-      box-shadow: rgba(0, 0, 0, 0.3) 0.125rem 0.5rem 0.25rem -0.375rem;
-    }
+    padding: 0.6rem;
   }
 
   &__info {
@@ -58,5 +42,15 @@
     &:focus {
       box-shadow: rgba(0, 0, 0, 0.3);
     }
+  }
+}
+
+.flight {
+  @include card;
+  padding: 1rem;
+
+  &__wrapper {
+    display: flex;
+    gap: 0.25rem;
   }
 }

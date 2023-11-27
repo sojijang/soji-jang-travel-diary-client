@@ -1,0 +1,30 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.ReactModal__Content--after-open {
+  font-family: $primary-font;
+}
+
+.add-booking {
+  &__button {
+    @include button;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+    &--close {
+      margin-bottom: 1rem;
+    }
+    &--save {
+      margin-top: 1rem;
+    }
+  }
+
+  &__input {
+    @include input;
+  }
+}
+
+.react-datetime-picker {
+  &__wrapper {
+    @include select;
+  }
+}

@@ -137,14 +137,11 @@ export default function BookingInformation({ currentUser }) {
           <h2 className="booking__title">Booking Information</h2>
         </div>
         <div className="booking__wrapper booking__info">
-          <img
-            onClick={openModal}
-            className="booking__add-icon"
-            src={AddIcon}
-            alt="Add icon"
-          />
+          <button onClick={openModal} className="booking__button">
+            Add Flight
+          </button>
           <button onClick={openInfo} className="booking__button">
-            See flight here
+            See Flight Here
           </button>
         </div>
       </div>
@@ -162,21 +159,38 @@ export default function BookingInformation({ currentUser }) {
         arrivalETA={arrivalETA}
       />
       {showInfo && (
-        <div>
-          <h3>Flight</h3>
+        <article className="flight">
           {flights.map((flight) => (
-            <div key={flight.id}>
-              <p>Departure: {flight.departure_location}</p>
-              <p>ETD: {formatDate(flight.departure_etd)}</p>
-              <p>ETA: {formatDate(flight.departure_eta)}</p>
-              <p>Arrival: {flight.return_location}</p>
-              <p>ETD: {formatDate(flight.return_etd)}</p>
-              <p>ETA: {formatDate(flight.return_eta)}</p>
-              <p>Budget: {flight.budget}</p>
+            <div key={flight.id} className="flight__article">
+              <div className="flight__wrapper">
+                <p className="flight__text">
+                  Departure: {flight.departure_location}
+                </p>
+                <p className="flight__text">
+                  ETD: {formatDate(flight.departure_etd)}
+                </p>
+                <p className="flight__text">
+                  ETA: {formatDate(flight.departure_eta)}
+                </p>
+              </div>
+              <div className="flight__wrapper">
+                <p className="flight__text">
+                  Arrival: {flight.return_location}
+                </p>
+                <p className="flight__text">
+                  ETD: {formatDate(flight.return_etd)}
+                </p>
+                <p className="flight__text">
+                  ETA: {formatDate(flight.return_eta)}
+                </p>
+              </div>
+              <p className="flight__text">Budget: {flight.budget}</p>
             </div>
           ))}
-          <button onClick={openModal}>Add more</button>
-        </div>
+          <button onClick={openModal} className="booking__button">
+            Add more
+          </button>
+        </article>
       )}
     </article>
   );

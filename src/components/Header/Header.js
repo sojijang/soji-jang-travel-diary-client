@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__wrapper">
-        <Link className="header__link" to="/">
+        <Link className="header__link" to="/dashboard">
           <img className="header__image" src={LogoIcon} alt="Logo icon" />
         </Link>
         <Link className="header__link" to="/login">
