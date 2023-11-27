@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthField from "../../components/AuthField/AuthField";
-import KeyIcon from "../../assets/icons/key_2001957.svg";
+import KeyIcon from "../../assets/icons/password_2665356.svg";
 
 export default function Login({ setCurrentUser }) {
   const [error, setError] = useState(null);
@@ -45,10 +45,12 @@ export default function Login({ setCurrentUser }) {
         <AuthField type="text" name="email" label="Email" />
         <AuthField type="password" name="password" label="Password" />
         <button className="login__button">Log in</button>
-        {error && <div className="login__message">{error}</div>}
+        {error && (
+          <div className="login__message">{error}</div>
+        )}
       </form>
       <p className="login-page__text">
-        Don't you have an account?{" "}
+        Need an account?{" "}
         <Link to="/signup" className="login-page__button">
           Sign up
         </Link>

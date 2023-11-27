@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation();
-  const hideHeaderForPaths = ["/"];
+  const hideHeaderForPaths = ["/", "/login", "/signup"];
 
   if (hideHeaderForPaths.includes(location.pathname)) {
     return <></>;
