@@ -96,6 +96,13 @@ export default function BookingInformation({ currentUser }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const isDepartureValid = event.target.departure.value.trim() !== "";
+    const isArrivalValid = event.target.arrival.value.trim() !== "";
+
+    if (!isDepartureValid || !isArrivalValid) {
+      return;
+    }
+
     const parsedBudget = parseFloat(event.target.budget.value.trim());
 
     const newFlight = {
@@ -112,11 +119,11 @@ export default function BookingInformation({ currentUser }) {
     try {
       const data = await postFlight(newFlight);
 
-      console.log(data);
       setFlights([...flights, data]);
     } catch (error) {
       console.error(error.response.data);
     }
+    closeModal();
   };
 
   const formatDate = (dateString) => {
@@ -185,28 +192,24 @@ export default function BookingInformation({ currentUser }) {
           {flights.map((flight) => (
             <div key={flight.id} className="flight__article">
               <div className="flight__wrapper">
+                <p className="flight__subtitle">Departure:</p>
+                <p className="flight__text">{flight.departure_location}</p>
+              </div>
+              <div className="flight__wrapper">
+                <p className="flight__subtitle">ETD:</p>
                 <p className="flight__text">
-                  Departure: {flight.departure_location}
-                </p>
-                <p className="flight__text">
-                  ETD: {formatDate(flight.departure_etd)}
-                </p>
-                <p className="flight__text">
-                  ETA: {formatDate(flight.departure_eta)}
+                  {formatDate(flight.departure_etd)}
                 </p>
               </div>
               <div className="flight__wrapper">
-                <p className="flight__text">
-                  Arrival: {flight.return_location}
-                </p>
-                <p className="flight__text">
-                  ETD: {formatDate(flight.return_etd)}
-                </p>
-                <p className="flight__text">
-                  ETA: {formatDate(flight.return_eta)}
-                </p>
+                <p className="flight__subtitle">Arrival:</p>
+                <p className="flight__text">{flight.return_location}</p>
               </div>
-              <p className="flight__text">Price: {flight.budget}</p>
+              <div className="flight__wrapper">
+                <p className="flight__subtitle">ETA:</p>
+                <p className="flight__text">{formatDate(flight.return_eta)}</p>
+              </div>
+              <p className="flight__subtitle">Price: {flight.budget}</p>
             </div>
           ))}
 
