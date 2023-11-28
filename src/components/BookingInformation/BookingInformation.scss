@@ -1,2 +1,56 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.booking {
+  font-family: $primary-font;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  &__icon {
+    width: 3.35rem;
+    height: 3.35rem;
+  }
+
+  &__title {
+    margin: 0.75rem;
+  }
+
+  &__button {
+    @include button;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  &__info {
+    gap: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__add-icon {
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.3);
+      transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.flight {
+  @include card;
+  padding: 1rem;
+
+  &__wrapper {
+    display: flex;
+    gap: 0.25rem;
+  }
+}

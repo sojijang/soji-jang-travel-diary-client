@@ -1,0 +1,43 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.add-map-popup {
+  &__label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  &__input {
+    @include input;
+    font-family: $primary-font;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
+  }
+
+  &__select {
+    @include select;
+    font-family: $primary-font;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
+  }
+
+  &__option {
+    &:focus {
+      min-width: 500px;
+      width: auto;
+    }
+  }
+
+  &__button {
+    @include button;
+    padding: 0.5rem;
+  }
+
+  &__wrapper {
+    margin-bottom: 0.5rem;
+  }
+}

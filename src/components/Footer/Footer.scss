@@ -1,2 +1,23 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.footer {
+  margin-top: 0.5rem;
+  @include card;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    padding: 1rem 0;
+  }
+  &__calendar-icon {
+    width: 3rem;
+    height: 3rem;
+    @include hover-state;
+  }
+
+  &__map-icon {
+    @extend .footer__calendar-icon;
+  }
+}

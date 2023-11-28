@@ -2,15 +2,43 @@
 @use "../../styles/partials/mixins" as *;
 
 .conversion {
-  margin: 3rem;
+  margin: 2rem;
+  display: flex;
+  gap: 1rem;
+
+  &__wrapper {
+    @include card;
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
   &__input {
-    border: 1px solid #333;
-    border-radius: 0.3rem;
-    padding: 0.25rem;
-    width: 10rem;
+    @include input;
+    width: 7.5rem;
+    margin-right: 1rem;
+    background: 0 0;
+    font-family: $primary-font;
   }
 
   &__select {
-    margin-left: 0.5rem;
+    @include select;
+    margin-top: 1rem;
+    background: 0 0;
+    font-size: 1rem;
+    font-family: $primary-font;
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 0.2rem;
+    margin-top: 0.7rem;
+  }
+
+  &__into-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.75rem;
   }
 }

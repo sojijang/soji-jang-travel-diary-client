@@ -1,35 +1,63 @@
 import "./EventDetails.scss";
+import Modal from "react-modal";
+
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+};
 
 export default function ShowEvent({
   eventDetails,
-  setShowEvent,
-  handleShowEdit,
-  handleShowDelete,
+  openEditModal,
+  isDetailOpen,
+  closeDetailModal,
+  openDeleteModal,
+  closeEditModal,
 }) {
+  const handleDeleteClick = () => {
+    openDeleteModal();
+    closeEditModal();
+  };
+
+  const handleEditClick = () => {
+    openEditModal();
+    closeDetailModal();
+  };
+
   return (
-    <div className="calendar-activity">
-      <button
-        className="calendar-feature__button"
-        onClick={() => setShowEvent(false)}
-      >
-        Exit
-      </button>
-      <h2>EVENT DETAILS</h2>
-      <p>Date: {eventDetails.start}</p>
-      <p>Location: {eventDetails.title}</p>
-      <div className="calendar-activity__plan-notes">
-        <p>Morning</p>
-        <p> {eventDetails.AMplan}</p>
-        <p>Afternoon</p>
-        <p> {eventDetails.PMplan}</p>
+    <Modal
+      isOpen={isDetailOpen}
+      onRequestClose={closeDetailModal}
+      style={customStyles}
+      shouldCloseOnOverlayClick={false}
+    >
+      <div className="detail-popup">
+        <button className="detail-popup__button" onClick={closeDetailModal}>
+          Exit
+        </button>
+        <h2 className="detail-popup__title">EVENT DETAILS</h2>
+        <p className="detail-popup__subtitle">Date: {eventDetails.start}</p>
+        <p className="detail-popup__subtitle">Location: {eventDetails.title}</p>
+        <div className="detail-popup__wrapper">
+          <p className="detail-popup__subtitle">Morning:</p>
+          <p className="detail-popup__content"> {eventDetails.AMplan}</p>
+          <p className="detail-popup__subtitle">Afternoon:</p>
+          <p className="detail-popup__content"> {eventDetails.PMplan}</p>
+        </div>
+        <p className="detail-popup__subtitle">Budget: {eventDetails.budget}</p>
+        <div className="detail-popup__group">
+          <button
+            className="detail-popup__button detail-popup__button--edit"
+            onClick={handleEditClick}
+          >
+            Edit
+          </button>
+          <button className="detail-popup__button" onClick={handleDeleteClick}>
+            Delete
+          </button>
+        </div>
       </div>
-      <p>Budget: {eventDetails.budget}</p>
-      <button className="calendar-feature__button" onClick={handleShowEdit}>
-        Edit
-      </button>
-      <button className="calendar-feature__button" onClick={handleShowDelete}>
-        Delete
-      </button>
-    </div>
+    </Modal>
   );
 }

@@ -2,14 +2,25 @@
 @use "../../styles/partials/mixins" as *;
 
 .current-currency {
-  margin: 3rem;
+  margin: 2rem;
+
   &__box {
-    background-color: #ffffff;
-    width: 20rem;
-    height: 3.5rem;
-    text-align: center;
-    padding-bottom: 1rem;
-    border: 0.1rem solid;
-    border-radius: 0.35rem;
+    @include card;
+    display: flex;
+    justify-content: left;
+    gap: 0.7rem;
+    padding: 1rem;
+  }
+
+  &__pound-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &__text {
+    color: #495057;
+    font-family: $primary-font;
+    font-size: 1.15rem;
+    line-height: 1.1rem;
   }
 }

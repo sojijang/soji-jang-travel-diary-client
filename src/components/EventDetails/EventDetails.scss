@@ -1,0 +1,21 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.detail-popup {
+  &__button {
+    @include button;
+    padding: 0.5rem;
+    &--edit {
+        margin-right: 1rem;
+    }
+  }
+
+  &__title {
+    margin: 1rem 0;
+    margin-top: 1.5rem;
+  }
+
+  &__group {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,25 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.edit-popup {
+  &__button {
+    @include button;
+    padding: 0.5rem;
+    &--save {
+        margin-top: 1rem;
+    }
+  }
+
+  &__title {
+    margin: 1rem 0;
+  }
+
+  &__subtitle {
+    margin: 0.5rem 0;
+  }
+
+  &__input {
+    @include input;
+    font-family: $primary-font;
+  }
+}
