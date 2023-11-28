@@ -3,7 +3,7 @@
 
 .footer {
   margin-top: 0.5rem;
-  @include card;
+  border-top: 0.15rem dashed #000;
 
   &__wrapper {
     display: flex;

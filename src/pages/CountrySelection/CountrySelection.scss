@@ -2,9 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 
 .first-page {
+  font-family: $primary-font;
+
   &__title {
     margin: 0;
-    padding: 5rem 5rem 0 6rem;
+    padding: 4.2rem 4.2rem 0 6rem;
     font-size: 2.25rem;
   }
 }

@@ -2,9 +2,10 @@
 @use "../../styles/partials/mixins" as *;
 
 .edit-map-popup {
+  font-family: $primary-font;
+
   &__form {
     margin: 0.5rem;
-    width: 12.5rem;
   }
 
   &__container {
@@ -25,7 +26,6 @@
 
   &__input {
     @include input;
-    font-family: $primary-font;
     &:focus {
       border: 0.15rem solid #000;
       outline: none;

@@ -5,6 +5,8 @@ import CurrencyConversion from "../../components/CurrencyConversion/CurrencyConv
 import BookingInformation from "../../components/BookingInformation/BookingInformation";
 import EnglandIcon from "../../assets/icons/great-britain_6608472.svg";
 import BackIcon from "../../assets/icons/left-arrow_9590004.svg";
+import CalendarIcon from "../../assets/icons/deadline_674292.svg";
+import MapIcon from "../../assets/icons/map_7145349.svg";
 
 export default function Dashboard({ currentUser }) {
   return (
@@ -27,6 +29,20 @@ export default function Dashboard({ currentUser }) {
           alt="Back icon"
         />
       </Link>
+      <article className="footer footer-dashboard">
+        <div className="footer__wrapper">
+          <Link className="footer__link" to="/calendar">
+            <img
+              className="footer__calendar-icon"
+              src={CalendarIcon}
+              alt="Calendar"
+            />
+          </Link>
+          <Link className="footer__link" to="/map">
+            <img className="footer__map-icon" src={MapIcon} alt="Map" />
+          </Link>
+        </div>
+      </article>
     </main>
   );
 }
