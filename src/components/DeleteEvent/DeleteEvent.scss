@@ -1,8 +1,16 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
 .delete-popup {
-    &__content {
-        border: 0.1rem solid #000000;
-        border-radius: 0.25rem;
-        margin: 1rem;
-        padding: 1rem;
+  &__title {
+   margin: 1rem 0;
+  }
+
+  &__button {
+    @include button;
+    padding: 0.5rem;
+    &--delete {
+        margin-top: 0.5rem;
     }
+  }
 }

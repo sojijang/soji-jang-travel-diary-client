@@ -6,6 +6,7 @@
   border: 0.1rem solid #000000;
   border-radius: 0.25rem;
   width: 80%;
+  font-family: $primary-font;
 
   &__time-table {
     border: 0.025rem solid #827a7a;
@@ -17,6 +18,54 @@
 .calendar-feature {
   &__button {
     cursor: pointer;
-    margin-top: 1rem;
+    @include button;
+    margin: 1rem;
+    padding: 0.5rem;
   }
+}
+
+.fc-toolbar {
+  font-family: $primary-font;
+}
+
+.fc-button {
+  &-primary {
+    @include button;
+  }
+
+  &-bg-color {
+    background-color: #000000;
+  }
+}
+
+.fc .fc-button-primary {
+  background-color: #fff;
+  border-color: #fff;
+  color: #000000;
+  padding: 0.2rem;
+  @include card;
+  &:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #000000;
+  }
+  &:disabled {
+    background-color: #fff;
+    border-color: #fff;
+    color: #000000;
+    padding: 0.2rem;
+    @include card;
+  }
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  margin: 0.5rem 1rem;
+}
+
+.fc .fc-view-harness {
+  font-family: $primary-font;
+}
+
+.fc .fc-bg-event {
+  background: #9bd1f2;
 }

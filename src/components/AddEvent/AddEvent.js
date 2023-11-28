@@ -28,40 +28,55 @@ export default function AddEvent({
       shouldCloseOnOverlayClick={false}
     >
       <div className="add-popup__wrapper">
-        <button className="calendar-feature__button" onClick={closeAddModal}>
+        <button className="add-popup__button" onClick={closeAddModal}>
           Exit
         </button>
-        <h2>DAY PLAN</h2>
-        <form onSubmit={handleSubmit}>
-          <p>Date</p>
-          <DatePicker selected={startDate} onChange={handleDateSelect} />
-          <p>Location</p>
-          <input type="text" onChange={(e) => setLocation(e.target.value)} />
-          <div className="calendar-activity__plan-notes">
-            <p>Morning</p>
+        <h2 className="add-popup__title">DAY PLAN</h2>
+        <form className="add-popup__form" onSubmit={handleSubmit}>
+          <p className="add-popup__subtitle">Date</p>
+          <DatePicker
+            className="add-popup__input"
+            selected={startDate}
+            onChange={handleDateSelect}
+          />
+          <p className="add-popup__subtitle">Location</p>
+          <input
+            className="add-popup__input"
+            type="text"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <div className="add-popup__wrapper">
+            <p className="add-popup__subtitle">Morning</p>
             <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Morning task"
+              className="add-popup__input"
+              name="text"
+              id="text"
+              cols="25"
+              rows="5"
               onChange={(e) => setMorningTask(e.target.value)}
             ></textarea>
-            <p>Afternoon</p>
+            <p className="add-popup__subtitle">Afternoon</p>
             <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Afternoon task"
+              className="add-popup__input"
+              name="text"
+              id="text"
+              cols="25"
+              rows="5"
               onChange={(e) => setAfternoonTask(e.target.value)}
             ></textarea>
           </div>
-          <br />
-          <p>budget</p>
-          <input type="text" onChange={(e) => setBudget(e.target.value)} />
-          <br />
-          <button type="submit" className="calendar-feature__button">
+          <div>
+            <p className="add-popup__subtitle">budget</p>
+            <input
+              className="add-popup__input"
+              type="text"
+              onChange={(e) => setBudget(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className="add-popup__button add-popup__button--save"
+          >
             Save
           </button>
         </form>

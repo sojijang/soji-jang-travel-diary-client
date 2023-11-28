@@ -259,6 +259,7 @@ export default function CalendarFeature({ currentUser }) {
           openEditModal={openEditModal}
           closeDetailModal={closeDetailModal}
           openDeleteModal={openDeleteModal}
+          closeEditModal={closeEditModal}
         />
       </article>
       <article className="delete-popup">

@@ -2,6 +2,9 @@ import "./DeleteEvent.scss";
 import Modal from "react-modal";
 
 const customStyles = {
+  content: {
+height: "250px"
+  },
   overlay: {
     backgroundColor: "rgba(0,0,0,0.5)",
   },
@@ -20,8 +23,9 @@ export default function DeleteEvent({
       style={customStyles}
       shouldCloseOnOverlayClick={false}
     >
-      <div className="delete-popup__content">
+      <div className="delete-popup">
         <form
+          className="delete-popup__form"
           onSubmit={() => {
             handleDelete(activityId);
           }}
@@ -29,12 +33,13 @@ export default function DeleteEvent({
           <button className="delete-popup__button" onClick={closeDeleteModal}>
             Exit
           </button>
-          <h2 className="delete-popup__title">Delete?</h2>
+          <h2 className="delete-popup__title">Delete</h2>
           <p className="delete-popup__text">
-            Please confirm that you'd like to delete. You won't be able to undo
-            this action.
+            Would you like to delete?
           </p>
-          <button type="submit">Delete</button>
+          <button className="delete-popup__button delete-popup__button--delete" type="submit">
+            Delete
+          </button>
         </form>
       </div>
     </Modal>
