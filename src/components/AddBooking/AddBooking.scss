@@ -28,3 +28,18 @@
     @include select;
   }
 }
+
+.react-datetime-picker__calendar .react-calendar {
+  font-family: $primary-font;
+}
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  font-family: $primary-font;
+}
+
+.react-calendar__navigation {
+  background-color: #e5f9ff;
+}

@@ -17,7 +17,7 @@ export default function Dashboard({ currentUser }) {
           src={EnglandIcon}
           alt="England Icon"
         />
-        <h2 className="dashboard__title">Welcome to England</h2>
+        <h2 className="dashboard__title">Welcome to UK</h2>
       </div>
       <CurrentCurrency />
       <CurrencyConversion />

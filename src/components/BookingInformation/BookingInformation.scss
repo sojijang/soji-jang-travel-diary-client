@@ -22,7 +22,10 @@
   &__button {
     @include button;
     font-size: 0.9rem;
-    padding: 0.6rem;
+    padding: 0.25rem;
+    &--add {
+      margin-top: 0.75rem;
+    }
   }
 
   &__info {
@@ -52,5 +55,9 @@
   &__wrapper {
     display: flex;
     gap: 0.25rem;
+  }
+
+  &__article {
+    border-bottom: 0.15rem dashed #000;
   }
 }

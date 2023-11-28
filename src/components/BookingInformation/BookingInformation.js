@@ -13,8 +13,15 @@ import FlightTicket from "../../assets/icons/ticket_7591340.svg";
 
 Modal.setAppElement("#root");
 
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+};
+
 export default function BookingInformation({ currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [flights, setFlights] = useState([]);
 
@@ -31,8 +38,12 @@ export default function BookingInformation({ currentUser }) {
     setIsOpen(false);
   };
 
-  const openInfo = () => {
-    setShowInfo(!showInfo);
+  const openInfoModal = () => {
+    setIsInfoOpen(true);
+  };
+
+  const closeInfoModal = () => {
+    setIsInfoOpen(false);
   };
 
   const formatDateForBackend = (dateString) => {
@@ -139,7 +150,7 @@ export default function BookingInformation({ currentUser }) {
           <button onClick={openModal} className="booking__button">
             Add Flight
           </button>
-          <button onClick={openInfo} className="booking__button">
+          <button onClick={openInfoModal} className="booking__button">
             See Flight Here
           </button>
         </div>
@@ -157,8 +168,20 @@ export default function BookingInformation({ currentUser }) {
         handleArrivalETA={handleArrivalETA}
         arrivalETA={arrivalETA}
       />
-      {showInfo && (
-        <article className="flight">
+      <Modal
+        isOpen={isInfoOpen}
+        onRequestClose={closeInfoModal}
+        style={customStyles}
+        shouldCloseOnOverlayClick={false}
+      >
+        <div className="flight">
+          <button
+            className="flight__button booking__button"
+            onClick={closeInfoModal}
+            style={customStyles}
+          >
+            Close
+          </button>
           {flights.map((flight) => (
             <div key={flight.id} className="flight__article">
               <div className="flight__wrapper">
@@ -183,14 +206,18 @@ export default function BookingInformation({ currentUser }) {
                   ETA: {formatDate(flight.return_eta)}
                 </p>
               </div>
-              <p className="flight__text">Budget: {flight.budget}</p>
+              <p className="flight__text">Price: {flight.budget}</p>
             </div>
           ))}
-          <button onClick={openModal} className="booking__button">
+
+          <button
+            onClick={openModal}
+            className="booking__button booking__button--add"
+          >
             Add more
           </button>
-        </article>
-      )}
+        </div>
+      </Modal>
     </article>
   );
 }
