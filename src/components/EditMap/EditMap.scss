@@ -1,2 +1,40 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+
+.edit-map-popup {
+  &__form {
+    margin: 0.5rem;
+    width: 12.5rem;
+  }
+
+  &__container {
+    margin: 0.5rem 0;
+  }
+
+  &__label {
+    font-size: 1.2rem;
+  }
+
+  &__select {
+    @include select;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
+  }
+
+  &__input {
+    @include input;
+    font-family: $primary-font;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
+  }
+
+  &__button {
+    @include button;
+    padding: 0.25rem;
+    margin-top: 0.5rem;
+  }
+}

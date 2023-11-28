@@ -22,17 +22,22 @@ export default function EditMap({
           closeOnClick={false}
           onClose={handleClose}
         >
-          <div>
+          <div className="edit-map-popup">
             <form
+              className="edit-map-popup__form"
               onSubmit={(event) => {
                 handleEditSave(event);
                 handleClose();
               }}
             >
-              <div>
-                <label htmlFor="label">Choose a category</label>
-                <br />
+              <div className="edit-map-popup__wrapper">
+                <div className="edit-map-popup__container">
+                  <label htmlFor="label" className="edit-map-popup__label">
+                    Choose a category
+                  </label>
+                </div>
                 <select
+                  className="edit-map-popup__select"
                   name="label"
                   id="label"
                   onChange={(event) => {
@@ -43,20 +48,40 @@ export default function EditMap({
                   }}
                   value={editPoint.label}
                 >
-                  <option value="restaurant">Restaurant</option>
-                  <option value="cafe">Cafe</option>
-                  <option value="sightseeing">Sightseeing</option>
-                  <option value="entertainment">Entertainment</option>
-                  <option value="activity">Activity</option>
+                  <option className="edit-map-popup__option" value="restaurant">
+                    Restaurant
+                  </option>
+                  <option className="edit-map-popup__option" value="cafe">
+                    Cafe
+                  </option>
+                  <option
+                    className="edit-map-popup__option"
+                    value="sightseeing"
+                  >
+                    Sightseeing
+                  </option>
+                  <option
+                    className="edit-map-popup__option"
+                    value="entertainment"
+                  >
+                    Entertainment
+                  </option>
+                  <option className="edit-map-popup__option" value="activity">
+                    Activity
+                  </option>
                 </select>
               </div>
-              <label htmlFor="description">Description</label>
-              <br />
+              <div className="edit-map-popup__container">
+                <label htmlFor="description" className="edit-map-popup__label">
+                  Description
+                </label>
+              </div>
               <textarea
+                className="edit-map-popup__input"
                 name="description"
                 id="description"
                 cols="20"
-                rows="5"
+                rows="3"
                 onChange={(event) => {
                   setEditPoint({
                     ...editPoint,
@@ -65,7 +90,11 @@ export default function EditMap({
                 }}
                 value={editPoint.description}
               ></textarea>
-              <button type="submit">Save</button>
+              <div className="edit-map-popup__wrapper">
+                <button type="submit" className="edit-map-popup__button">
+                  Save
+                </button>
+              </div>
             </form>
           </div>
         </Popup>

@@ -1,9 +1,2 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
-
-.map {
-    &__title{
-        margin: 0;
-        padding: 2rem;
-    }
-}

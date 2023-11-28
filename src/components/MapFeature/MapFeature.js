@@ -201,11 +201,16 @@ export default function MapFeature({ currentUser }) {
                 onClose={() => setCurrentPlaceId(null)}
               >
                 <div className="map-place">
-                  <label htmlFor="place">Label</label>
-                  <p>{point.label}</p>
-                  <label htmlFor="description">Description</label>
-                  <p>{point.description}</p>
+                  <label htmlFor="place" className="map-place__label">
+                    Label:
+                  </label>
+                  <p className="map-place__content">{point.label}</p>
+                  <label htmlFor="description" className="map-place__label">
+                    Description:
+                  </label>
+                  <p className="map-place__content">{point.description}</p>
                   <button
+                    className="map-place__button"
                     onClick={() => {
                       handleEdit(point);
                     }}
@@ -213,6 +218,7 @@ export default function MapFeature({ currentUser }) {
                     Edit
                   </button>
                   <button
+                    className="map-place__button"
                     onClick={() => {
                       openModal(point);
                     }}
