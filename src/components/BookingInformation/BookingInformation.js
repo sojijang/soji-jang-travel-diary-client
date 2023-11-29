@@ -217,6 +217,7 @@ export default function BookingInformation({ currentUser }) {
         arrivalETA={arrivalETA}
         handleDepartureETD={handleDepartureETD}
         handleArrivalETA={handleArrivalETA}
+        flight={flights.find((flight) => flight.id === flightId)}
       />
       <DeleteBooking
         isDeleteOpen={isDeleteOpen}

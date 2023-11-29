@@ -17,6 +17,10 @@
   &__input {
     @include input;
     font-family: $primary-font;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
   }
 
   &__button {
@@ -34,4 +38,8 @@
 
 .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
   background-color: #e5f9ff;
+}
+
+.error-message {
+  color: #ee6055;
 }
