@@ -116,7 +116,7 @@ export default function MapFeature({ currentUser }) {
 
       setPoints((prevPoints) =>
         prevPoints.map((point) =>
-          point.id === pointId
+          point.id == pointId
             ? {
                 ...point,
                 label: updatedPoint.label,
@@ -143,6 +143,7 @@ export default function MapFeature({ currentUser }) {
     } catch (error) {
       console.error(error);
     }
+    closeModal();
   };
 
   return (

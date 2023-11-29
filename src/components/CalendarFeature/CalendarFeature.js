@@ -168,6 +168,8 @@ export default function CalendarFeature({ currentUser }) {
   const handleSave = async (event) => {
     event.preventDefault();
 
+    console.log(eventDetails);
+
     const updatedActivity = {
       user_id: currentUser,
       date: eventDetails.start,
@@ -181,8 +183,9 @@ export default function CalendarFeature({ currentUser }) {
       await editActivity(activityId, updatedActivity);
 
       setPlans(
-        plans.map((plan) =>
-          plan.id === activityId
+        plans.map((plan) => {
+          console.log(plan.id == activityId);
+          return plan.id == activityId
             ? {
                 ...plan,
                 title: updatedActivity.location,
@@ -191,8 +194,8 @@ export default function CalendarFeature({ currentUser }) {
                 PMplan: updatedActivity.afternoon_task,
                 budget: updatedActivity.budget,
               }
-            : plan
-        )
+            : plan;
+        })
       );
     } catch (error) {
       console.error("Error updating activity:", error);
@@ -209,7 +212,6 @@ export default function CalendarFeature({ currentUser }) {
     }
   };
 
-  //styling
   const renderEventContent = (eventInfo) => {
     return (
       <>
