@@ -40,6 +40,7 @@ export default function AddEvent({
         break;
       case "budget":
         setBudgetError(value.trim() === "");
+        break;
 
       default:
         break;

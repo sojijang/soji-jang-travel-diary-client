@@ -201,30 +201,36 @@ export default function MapFeature({ currentUser }) {
                 onClose={() => setCurrentPlaceId(null)}
               >
                 <div className="map-place">
-                  <label htmlFor="place" className="map-place__label">
-                    Label:
-                  </label>
-                  <p className="map-place__content">{point.label}</p>
-                  <label htmlFor="description" className="map-place__label">
-                    Description:
-                  </label>
-                  <p className="map-place__content">{point.description}</p>
-                  <button
-                    className="map-place__button"
-                    onClick={() => {
-                      handleEdit(point);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="map-place__button"
-                    onClick={() => {
-                      openModal(point);
-                    }}
-                  >
-                    Delete
-                  </button>
+                  <div className="map-place__wrapper">
+                    <label htmlFor="place" className="map-place__label">
+                      Label:
+                    </label>
+                    <p className="map-place__content">{point.label}</p>
+                  </div>
+                  <div className="map-place__wrapper map-place__wrapper--margin">
+                    <label htmlFor="description" className="map-place__label">
+                      Description:
+                    </label>
+                    <p className="map-place__content">{point.description}</p>
+                  </div>
+                  <div className="map-place__group">
+                    <button
+                      className="map-place__button"
+                      onClick={() => {
+                        handleEdit(point);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="map-place__button"
+                      onClick={() => {
+                        openModal(point);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </Popup>
             )}

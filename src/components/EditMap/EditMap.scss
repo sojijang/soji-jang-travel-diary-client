@@ -18,6 +18,7 @@
 
   &__select {
     @include select;
+    font-family: $primary-font;
     &:focus {
       border: 0.15rem solid #000;
       outline: none;
@@ -26,6 +27,7 @@
 
   &__input {
     @include input;
+    font-family: $primary-font;
     &:focus {
       border: 0.15rem solid #000;
       outline: none;

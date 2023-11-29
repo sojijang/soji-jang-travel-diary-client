@@ -5,6 +5,7 @@
   &__label {
     font-size: 1rem;
     margin-right: 0.5rem;
+    font-family: $primary-font;
   }
 
   &__input {
@@ -40,4 +41,9 @@
   &__wrapper {
     margin-bottom: 0.5rem;
   }
+}
+
+.error-message {
+  font-family: $primary-font;
+  font-size: 1rem;
 }

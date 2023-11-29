@@ -39,6 +39,7 @@ export default function EditBooking({
         break;
       case "budget":
         setBudgetError(value.trim() === "");
+        break;
 
       default:
         break;

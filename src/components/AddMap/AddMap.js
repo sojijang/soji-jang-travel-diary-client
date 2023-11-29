@@ -1,5 +1,7 @@
 import "./AddMap.scss";
 import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
+import { useState } from "react";
+
 
 export default function AddMap({
   newPlace,
@@ -13,6 +15,25 @@ export default function AddMap({
     setCurrentPlaceId(null);
     setNewPlace(null);
   };
+
+  const [labelError, setLabelError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
+
+  const validateField = (fieldName) => {
+    const value = document.getElementById(fieldName).value;
+    switch (fieldName) {
+      case "label":
+        setLabelError(value.trim() === "");
+        break;
+      case "description":
+        setDescriptionError(value.trim() === "");
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <article className="add-map-popup">
       {newPlace && (
@@ -37,7 +58,10 @@ export default function AddMap({
                   Choose a category
                 </label>
                 <select
-                  className="add-map-popup__select"
+                  className={`add-map-popup__select ${
+                    labelError ? "error" : ""
+                  }`}
+                  onBlur={() => validateField("label")}
                   name="label"
                   id="label"
                   onChange={(event) => setLabel(event.target.value)}
@@ -62,12 +86,19 @@ export default function AddMap({
                   </option>
                 </select>
               </div>
+              {labelError && (
+                <p className="error-message">Label is required.</p>
+              )}
+
               <div className="add-map-popup__wrapper">
                 <label htmlFor="description" className="add-map-popup__label">
                   Description
                 </label>
                 <textarea
-                  className="add-map-popup__input"
+                  className={`add-map-popup__input ${
+                    descriptionError ? "error" : ""
+                  }`}
+                  onBlur={() => validateField("description")}
                   name="description"
                   id="description"
                   cols="20"
@@ -75,6 +106,10 @@ export default function AddMap({
                   onChange={(event) => setDescription(event.target.value)}
                 ></textarea>
               </div>
+              {descriptionError && (
+                <p className="error-message">Description is required.</p>
+              )}
+
               <button type="submit" className="add-map-popup__button">
                 Save
               </button>
