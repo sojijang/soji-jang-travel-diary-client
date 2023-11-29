@@ -1,10 +1,10 @@
-import "./AddBooking.scss";
+import "./EditBooking.scss";
 import Modal from "react-modal";
 import DateTimePicker from "react-datetime-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const customStyles = {
   content: {
@@ -15,14 +15,14 @@ const customStyles = {
   },
 };
 
-export default function AddBooking({
-  isOpen,
-  closeModal,
-  handleSubmit,
+export default function EditBooking({
+  isEditOpen,
+  closeEditModal,
   handleDepartureETD,
-  departureETD,
   handleArrivalETA,
+  departureETD,
   arrivalETA,
+  flight,
 }) {
   const [departureError, setDepartureError] = useState(false);
   const [arrivalError, setArrivalError] = useState(false);
@@ -47,20 +47,20 @@ export default function AddBooking({
 
   return (
     <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
+      isOpen={isEditOpen}
+      onRequestClose={closeEditModal}
       style={customStyles}
       shouldCloseOnOverlayClick={false}
     >
       <button
         className="add-booking__button add-booking__button--close"
-        onClick={closeModal}
+        onClick={closeEditModal}
         style={customStyles}
       >
         Close
       </button>
       <div className="add-booking__container">
-        <form onSubmit={handleSubmit} className="add-booking__form">
+        <form className="add-booking__form">
           <div className="add-booking__wrapper">
             <label htmlFor="departure" className="add-booking__label">
               Departure
@@ -73,6 +73,13 @@ export default function AddBooking({
               name="departure"
               className={`add-booking__input ${departureError ? "error" : ""}`}
               onBlur={() => validateField("departure")}
+              //   value={flight.departure_location}
+              //   onChange={(event) =>
+              //     setFlights({
+              //       ...flights,
+              //       departure_location: event.target.value,
+              //     })
+              //   }
             />
           </div>
           <div className="add-booking__wrapper">
@@ -104,6 +111,13 @@ export default function AddBooking({
               name="arrival"
               className={`add-booking__input ${arrivalError ? "error" : ""}`}
               onBlur={() => validateField("arrival")}
+              //   value={flight.return_location}
+              //   onChange={(event) =>
+              //     setFlights({
+              //       ...flights,
+              //       return_location: event.target.value,
+              //     })
+              //   }
             />
           </div>
           <div className="add-booking__wrapper">
@@ -134,6 +148,13 @@ export default function AddBooking({
               name="budget"
               className={`add-booking__input ${budgetError ? "error" : ""}`}
               onBlur={() => validateField("budget")}
+              //   value={flight.budget.value}
+              //   onChange={(event) =>
+              //     setFlights({
+              //       ...flights,
+              //       budget: event.target.value,
+              //     })
+              //   }
             />
           </div>
           {budgetError && <p className="error-message">Price is required.</p>}
