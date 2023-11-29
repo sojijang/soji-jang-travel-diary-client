@@ -8,6 +8,8 @@ import KeyIcon from "../../assets/icons/password_2665356.svg";
 
 export default function Login({ setCurrentUser }) {
   const [error, setError] = useState(null);
+  const [isLoggedin, setIsLoggedin] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -28,33 +30,37 @@ export default function Login({ setCurrentUser }) {
       const decodedToken = jwtDecode(token);
 
       setCurrentUser(decodedToken.id);
+      setIsLoggedin(true);
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
       setError(error.response ? error.response.data : "An error occurred");
     }
+    alert("You have been successfully logged in");
   };
 
   return (
     <main className="login-page">
-      <form className="login" onSubmit={handleSubmit}>
-        <div className="login__wrapper">
-          <img className="login__icon" src={KeyIcon} alt="Key" />
-          <h2 className="login__title">Log in</h2>
-        </div>
-        <AuthField type="text" name="email" label="Email" />
-        <AuthField type="password" name="password" label="Password" />
-        <button className="login__button">Log in</button>
-        {error && (
-          <div className="login__message">{error}</div>
-        )}
-      </form>
-      <p className="login-page__text">
-        Need an account?{" "}
-        <Link to="/signup" className="login-page__button">
-          Sign up
-        </Link>
-      </p>
+      <div>
+        <form className="login" onSubmit={handleSubmit}>
+          <div className="login__wrapper">
+            <img className="login__icon" src={KeyIcon} alt="Key" />
+            <h2 className="login__title">Log in</h2>
+          </div>
+          <AuthField type="text" name="email" label="Email" />
+          <AuthField type="password" name="password" label="Password" />
+          <button className="login__button">Log in</button>
+          {error && <div className="login__message">{error}</div>}
+        </form>
+        <p className="login-page__text">
+          Need an account?{" "}
+          <button className="login-page__button">
+            <Link to="/signup" className="login-page__link">
+              Sign up
+            </Link>
+          </button>
+        </p>
+      </div>
     </main>
   );
 }

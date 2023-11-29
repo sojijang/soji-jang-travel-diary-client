@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header setCurrentUser={setCurrentUser} />
         <Routes>
           <Route path="/" element={<CountrySelection />} />
           <Route

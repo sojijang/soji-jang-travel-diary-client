@@ -43,9 +43,11 @@ function Signup() {
       </form>
       <p className="signup-page__text">
         Have an account?{" "}
-        <Link to="/login" className="signup-page__button">
-          Log in
-        </Link>
+        <button className="signup-page__button">
+          <Link className="signup-page__link" to="/login">
+            Log in
+          </Link>
+        </button>
       </p>
     </main>
   );
