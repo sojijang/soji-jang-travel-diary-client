@@ -13,6 +13,7 @@ import Header from "./components/Header/Header";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -24,7 +25,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header setCurrentUser={setCurrentUser} />
+        <Header
+          setCurrentUser={setCurrentUser}
+          isLoggedin={isLoggedin}
+          setIsLoggedin={setIsLoggedin}
+        />
         <Routes>
           <Route path="/" element={<CountrySelection />} />
           <Route
@@ -33,7 +38,13 @@ function App() {
           />
           <Route
             path="/login"
-            element={<Login setCurrentUser={setCurrentUser} />}
+            element={
+              <Login
+                setCurrentUser={setCurrentUser}
+                isLoggedin={isLoggedin}
+                setIsLoggedin={setIsLoggedin}
+              />
+            }
           />
           <Route path="/signup" element={<Signup />} />
           <Route

@@ -6,9 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import AuthField from "../../components/AuthField/AuthField";
 import KeyIcon from "../../assets/icons/password_2665356.svg";
 
-export default function Login({ setCurrentUser }) {
+export default function Login({ setCurrentUser, setIsLoggedin, isLoggedin }) {
   const [error, setError] = useState(null);
-  const [isLoggedin, setIsLoggedin] = useState(false);
 
   const navigate = useNavigate();
 

@@ -2,18 +2,10 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import LogoIcon from "../../assets/icons/writing_5560402.svg";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-export default function Header({ setCurrentUser }) {
+export default function Header({ setCurrentUser, setIsLoggedin, isLoggedin }) {
   const location = useLocation();
   const hideHeaderForPaths = ["/", "/login", "/signup"];
-
-  const [isLoggedin, setIsLoggedin] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedin(!!token);
-  }, []);
 
   const handleLogout = (event) => {
     event.preventDefault();
