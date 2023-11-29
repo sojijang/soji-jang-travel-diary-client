@@ -1,7 +1,6 @@
 import "./EditMap.scss";
-import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
+import { Popup } from "react-map-gl";
 import { useState } from "react";
-
 
 export default function EditMap({
   editPoint,

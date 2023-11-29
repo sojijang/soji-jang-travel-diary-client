@@ -4,9 +4,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import {
   fetchFlight,
-  fetchOneFlight,
   postFlight,
-  editFlight,
   deleteFlight,
 } from "../../utils/API";
 import FlightTicket from "../../assets/icons/ticket_7591340.svg";

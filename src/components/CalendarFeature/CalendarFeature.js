@@ -27,8 +27,8 @@ export default function CalendarFeature({ currentUser }) {
   const [afternoonTask, setAfternoonTask] = useState("");
   const [budget, setBudget] = useState("");
 
-  const [calendarActivities, setCalendarActivities] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [calendarActivities, setCalendarActivities] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const [startDate, setStartDate] = useState(new Date());
   const [activityId, setActivityId] = useState(null);
@@ -111,20 +111,20 @@ export default function CalendarFeature({ currentUser }) {
   };
 
   // check here
-  const getCalendarActivity = async () => {
-    try {
-      const data = await fetchCalendarActivity();
+  // const getCalendarActivity = async () => {
+  //   try {
+  //     const data = await fetchCalendarActivity();
 
-      setCalendarActivities(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     setCalendarActivities(data);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getCalendarActivity();
-  }, []);
+  // useEffect(() => {
+  //   getCalendarActivity();
+  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -223,9 +223,9 @@ export default function CalendarFeature({ currentUser }) {
     );
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <section className="calendar">

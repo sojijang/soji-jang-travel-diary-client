@@ -4,7 +4,7 @@ import DateTimePicker from "react-datetime-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const customStyles = {
   content: {

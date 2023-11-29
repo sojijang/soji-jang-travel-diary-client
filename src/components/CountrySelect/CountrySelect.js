@@ -1,11 +1,11 @@
 import "./CountrySelect.scss";
-import React, { ReactDOM } from "react";
+import React from "react";
 import Globe from "../../assets/icons/globe_9811840.svg";
 import UKPin from "../../assets/icons/united-kingdom_9105638.svg";
 import KoreaPin from "../../assets/icons/south-korea_9105510.svg";
 import Plain from "../../assets/icons/mail_651035.svg";
 import PlainTwo from "../../assets/icons/paper-plane_3247958.svg";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CountrySelect() {
   const navigate = useNavigate();

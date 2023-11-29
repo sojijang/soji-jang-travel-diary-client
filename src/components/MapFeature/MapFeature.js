@@ -1,6 +1,6 @@
 import "./MapFeature.scss";
 import React, { useEffect, useState } from "react";
-import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
+import Map, { Marker, Popup } from "react-map-gl";
 import { SearchBox } from "@mapbox/search-js-react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -25,7 +25,7 @@ export default function MapFeature({ currentUser }) {
     zoom: 8,
   });
   const [points, setPoints] = useState([]);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
   const [label, setLabel] = useState(null);
@@ -158,7 +158,7 @@ export default function MapFeature({ currentUser }) {
       >
         <SearchBox
           accessToken={process.env.REACT_APP_MAP_TOKEN}
-          value={query}
+          // value={query}
           onRetrieve={handleOnResult}
           mapboxgl={mapboxgl}
           marker={true}
