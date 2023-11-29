@@ -20,6 +20,10 @@
 
   &__input {
     @include input;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
   }
 }
 
