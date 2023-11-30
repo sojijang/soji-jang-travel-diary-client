@@ -23,7 +23,7 @@ export default function CountrySelect() {
           />
         </div>
         <img
-          className="country-select__pin-image"
+          className=" country-select__pin-image country-select__pin-image--uk"
           src={UKPin}
           alt="UK pin"
           onClick={handleClickMarker}
@@ -38,14 +38,12 @@ export default function CountrySelect() {
             autoplay
             loop
             src={RedAirplane}
-            style={{ height: "150px", width: "150px" }}
             className="country-select__plain-image-two"
           ></Player>
           <Player
             autoplay
             loop
             src={RedAirplane}
-            style={{ height: "150px", width: "150px" }}
             className="country-select__plain-image"
           ></Player>
         </div>

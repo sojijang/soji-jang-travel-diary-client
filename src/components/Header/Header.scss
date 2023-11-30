@@ -5,17 +5,27 @@
   width: 100%;
   height: 4.5rem;
   border-bottom: 0.15rem dashed #000;
+  @include desktop {
+    height: 6rem;
+  }
 
   &__image {
     width: 2.5rem;
     height: 2.5rem;
     @include hover-state;
+    @include desktop {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
     padding: 0.7rem 2rem;
+    @include desktop {
+      padding: 0.7rem 6rem;
+    }
   }
 
   &__link {
@@ -29,5 +39,12 @@
     font-size: 0.8rem;
     font-family: $secondary-font;
     margin-top: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    @include desktop {
+      height: 3rem;
+      width: 5rem;
+      font-size: 1.2rem;
+    }
   }
 }

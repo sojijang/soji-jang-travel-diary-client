@@ -3,15 +3,28 @@
 
 .ReactModal__Content--after-open {
   font-family: $primary-font;
+  @include desktop {
+    width: 30%;
+    transform: translate(109%, 34%);
+  }
 }
 
 .add-booking {
+  &__label {
+    @include desktop {
+      font-size: 1.2rem;
+    }
+  }
+
   &__button {
     @include button;
     font-size: 0.9rem;
     padding: 0.25rem;
     &--close {
       margin-bottom: 1rem;
+      @include desktop {
+        margin-bottom: 0.5rem;
+      }
     }
     &--save {
       margin-top: 1rem;
@@ -20,6 +33,7 @@
 
   &__input {
     @include input;
+    font-family: $primary-font;
     &:focus {
       border: 0.15rem solid #000;
       outline: none;

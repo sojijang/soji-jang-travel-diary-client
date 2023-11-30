@@ -19,9 +19,13 @@ export default function Dashboard({ currentUser }) {
         />
         <h2 className="dashboard__title">Welcome to UK</h2>
       </div>
-      <CurrentCurrency />
-      <CurrencyConversion />
-      <BookingInformation currentUser={currentUser} />
+      <div className="dashboard__container">
+        <div className="dashboard__group">
+          <CurrentCurrency />
+          <CurrencyConversion />
+        </div>
+        <BookingInformation currentUser={currentUser} />
+      </div>
       <Link className="dashboard__link" to="/">
         <img
           className="dashboard__image--back"

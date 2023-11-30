@@ -3,20 +3,37 @@
 
 .booking {
   font-family: $primary-font;
+  @include desktop {
+    width: 60%;
+  }
 
   &__wrapper {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
+    @include desktop {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   }
 
   &__icon {
     width: 3.35rem;
     height: 3.35rem;
+    @include desktop {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
   }
 
   &__title {
     margin: 0.75rem;
+    @include desktop {
+      font-size: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.2rem solid #000;
+      border-bottom-right-radius: 15rem 0.5rem;
+    }
   }
 
   &__button {
@@ -25,6 +42,28 @@
     padding: 0.4rem;
     &--add {
       margin-top: 1.5rem;
+    }
+    &--display {
+      @include desktop {
+        display: none;
+      }
+    }
+    &--show {
+      display: none;
+      @include desktop {
+        display: flex;
+        background-color: #000;
+        color: #fff;
+        margin-left: 1.5rem;
+      }
+    }
+    @include desktop {
+      padding: 0.3rem;
+    }
+    &--desktop {
+      @include desktop {
+        padding: 0.7rem;
+      }
     }
   }
 
@@ -51,6 +90,25 @@
   @include card;
   padding: 1rem;
 
+  .flight__display-container {
+    @include desktop {
+      height: 6.25rem;
+      overflow-y: auto;
+    }
+  }
+
+  &__display {
+    display: none;
+    @include desktop {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-left: 1rem;
+      overflow-y: auto;
+      max-height: 18.75rem;
+    }
+  }
+
   &__wrapper {
     display: flex;
     gap: 0.5rem;
@@ -62,6 +120,10 @@
 
   &__article {
     border-bottom: 0.15rem dashed #000;
+    @include desktop {
+      padding: 0.5rem 1rem;
+      border: 0.15rem dashed #000;
+    }
   }
 
   &__text,
@@ -73,5 +135,4 @@
   &__button {
     margin-bottom: 0.75rem;
   }
-
 }

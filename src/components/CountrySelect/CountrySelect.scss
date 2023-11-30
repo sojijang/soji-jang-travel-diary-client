@@ -12,6 +12,11 @@
   &__globe-image {
     width: 16rem;
     height: 16rem;
+    @include desktop {
+      width: 30rem;
+      height: 30rem;
+      margin-top: 1rem;
+    }
   }
 
   &__pin-image {
@@ -19,8 +24,6 @@
     height: 3.25rem;
     position: absolute;
     z-index: 10;
-    left: 52%;
-    top: 38%;
     cursor: pointer;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.3);
@@ -29,25 +32,53 @@
     &:focus {
       box-shadow: rgba(0, 0, 0, 0.3);
     }
+    &--uk {
+      left: 52%;
+      top: 38%;
+      @include desktop {
+        left: 51%;
+        top: 38%;
+      }
+    }
     &--us {
       left: 24%;
       top: 56%;
+      @include desktop {
+        left: 37%;
+        top: 68%;
+      }
+    }
+    @include desktop {
+      width: 5rem;
+      height: 5rem;
     }
   }
 
   &__plain-image {
-    width: 5rem;
-    height: 5rem;
+    width: 10rem;
+    height: 10rem;
     position: absolute;
     bottom: 19%;
-    right: 7%;
+    right: 12%;
+    @include desktop {
+      width: 20rem;
+      height: 20rem;
+      bottom: -3%;
+      right: 25%;
+    }
   }
 
   &__plain-image-two {
-    width: 5rem;
-    height: 5rem;
+    width: 10rem;
+    height: 10rem;
     position: absolute;
     left: 5%;
     top: 33%;
+    @include desktop {
+      width: 20rem;
+      height: 20rem;
+      left: 21%;
+      top: 32%;
+    }
   }
 }

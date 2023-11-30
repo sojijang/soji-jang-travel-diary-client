@@ -29,6 +29,8 @@ export default function BookingInformation({ currentUser }) {
   const [arrivalETD, setArrivalETD] = useState(new Date());
   const [arrivalETA, setArrivalETA] = useState(new Date());
 
+  // const [showInfo, setShowInfo] = useState(false);
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -184,12 +186,70 @@ export default function BookingInformation({ currentUser }) {
             alt="Flight ticket"
           />
           <h2 className="booking__title">Booking Information</h2>
-        </div>
-        <div className="booking__wrapper booking__info">
-          <button onClick={openModal} className="booking__button">
+          <button onClick={openModal} className="booking__button booking__button--show">
             Add Flight
           </button>
-          <button onClick={openInfoModal} className="booking__button">
+        </div>
+        <div className="flight__display-container">
+          <div className="flight__display">
+            {flights
+              .filter((flight) => flight.user_id === currentUser)
+              .map((flight) => (
+                <div key={flight.id} className="flight__article">
+                  <div className="flight__wrapper">
+                    <p className="flight__subtitle">Departure:</p>
+                    <p className="flight__text">{flight.departure_location}</p>
+                  </div>
+                  <div className="flight__wrapper">
+                    <p className="flight__subtitle">ETD:</p>
+                    <p className="flight__text">
+                      {formatDate(flight.departure_etd)}
+                    </p>
+                  </div>
+                  <div className="flight__wrapper">
+                    <p className="flight__subtitle">Arrival:</p>
+                    <p className="flight__text">{flight.return_location}</p>
+                  </div>
+                  <div className="flight__wrapper">
+                    <p className="flight__subtitle">ETA:</p>
+                    <p className="flight__text">
+                      {formatDate(flight.return_eta)}
+                    </p>
+                  </div>
+                  <p className="flight__subtitle">Price: {flight.budget}</p>
+                  <div className="flight__wrapper flight__wrapper--button">
+                    <button
+                      className="booking__button"
+                      onClick={() => {
+                        openEditModal(flight);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="booking__button"
+                      onClick={() => {
+                        openDeleteModal(flight);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className="booking__wrapper booking__info">
+          <button
+            onClick={openModal}
+            className=" booking__button booking__button--display"
+          >
+            Add Flight
+          </button>
+          <button
+            onClick={openInfoModal}
+            className="booking__button booking__button--display"
+          >
             See Flight Here
           </button>
         </div>

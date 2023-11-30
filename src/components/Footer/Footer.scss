@@ -4,17 +4,28 @@
 .footer {
   margin-top: 0.5rem;
   border-top: 0.15rem dashed #000;
+  @include desktop {
+    margin-top: 1rem;
+  }
 
   &__wrapper {
     display: flex;
     justify-content: center;
     gap: 5rem;
     padding: 1rem 0;
+    @include desktop {
+     gap: 7rem;
+     margin-top: 0.7rem;
+    }
   }
   &__calendar-icon {
     width: 3rem;
     height: 3rem;
     @include hover-state;
+    @include desktop {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 
   &__map-icon {

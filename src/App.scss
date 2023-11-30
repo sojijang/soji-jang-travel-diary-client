@@ -8,4 +8,8 @@
   background-size: cover;
   width: 100%;
   height: 42rem;
+  @include desktop {
+    background-image: url(./assets/images/paper_copy.jpg);
+    height: 52.5rem;
+  }
 }

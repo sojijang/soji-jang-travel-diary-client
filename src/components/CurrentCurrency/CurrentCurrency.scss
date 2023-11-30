@@ -11,11 +11,20 @@
     align-items: center;
     gap: 0.7rem;
     padding: 1rem;
+    @include desktop {
+      margin-left: 2rem;
+      padding: 1rem;
+      width: 90%;
+    }
   }
 
   &__pound-icon {
     width: 3rem;
     height: 3rem;
+    @include desktop {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 
   &__text {
@@ -23,5 +32,8 @@
     font-family: $primary-font;
     font-size: 1.15rem;
     line-height: 1.1rem;
+    @include desktop {
+      font-size: 1.35rem;
+    }
   }
 }
