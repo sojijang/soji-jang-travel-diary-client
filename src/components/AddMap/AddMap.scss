@@ -40,6 +40,9 @@
 
   &__wrapper {
     margin-bottom: 0.5rem;
+    &--display {
+      display: inline-block;
+    }
   }
 }
 

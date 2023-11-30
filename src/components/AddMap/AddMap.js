@@ -90,7 +90,7 @@ export default function AddMap({
                 <p className="error-message">Label is required.</p>
               )}
 
-              <div className="add-map-popup__wrapper">
+              <div className=" add-map-popup__wrapper add-map-popup__wrapper--display">
                 <label htmlFor="description" className="add-map-popup__label">
                   Description
                 </label>
