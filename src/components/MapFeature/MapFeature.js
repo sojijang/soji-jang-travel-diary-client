@@ -147,6 +147,12 @@ export default function MapFeature({ currentUser }) {
     closeModal();
   };
 
+  const isDesktop = window.innerWidth > 1000;
+
+  const responsiveStyles = isDesktop
+    ? { width: "100%", height: 650 }
+    : { width: "100%", height: 425 };
+
   return (
     <div>
       <Map
@@ -154,7 +160,8 @@ export default function MapFeature({ currentUser }) {
         mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
-        style={{ width: 425, height: 425 }}
+        style={responsiveStyles}
+        className="map-feature"
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <SearchBox

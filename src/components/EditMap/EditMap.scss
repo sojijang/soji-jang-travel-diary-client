@@ -14,6 +14,9 @@
 
   &__label {
     font-size: 1.2rem;
+    @include desktop {
+      font-size: 1.5rem;
+    }
   }
 
   &__select {
@@ -22,6 +25,9 @@
     &:focus {
       border: 0.15rem solid #000;
       outline: none;
+    }
+    @include desktop {
+      font-size: 1.1rem;
     }
   }
 
@@ -32,11 +38,20 @@
       border: 0.15rem solid #000;
       outline: none;
     }
+    @include desktop {
+      font-size: 1.1rem;
+    }
   }
 
   &__button {
     @include button;
     padding: 0.25rem;
     margin-top: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    @include desktop {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
   }
 }

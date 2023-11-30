@@ -9,6 +9,10 @@
     &:hover {
       transform: translate3d(0, 0.125rem, 0);
     }
+    @include desktop {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 }
 
@@ -17,22 +21,37 @@
 
   &__label {
     font-size: 1.2rem;
+    @include desktop {
+      font-size: 1.5rem;
+    }
   }
 
   &__content {
     font-size: 1rem;
     margin: 0.5rem;
     margin-bottom: 1rem;
+    @include desktop {
+      font-size: 1.15rem;
+    }
   }
 
   &__button {
     @include button;
     padding: 0.3rem;
     margin-right: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    @include desktop {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
   }
 
   &__wrapper {
     border-bottom: 0.1rem dashed #000;
+    @include desktop {
+      border-bottom: 0.15rem dashed #000;
+    }
     &--margin {
       margin-top: 1rem;
     }
