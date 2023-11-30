@@ -71,22 +71,30 @@ export default function CalendarFeature({ currentUser }) {
 
   useEffect(() => {
     const fetchAllPlans = async () => {
-      const allPlans = await fetchCalendarActivity();
-      const formattedPlans = allPlans.map((plan) => ({
-        id: plan.id,
-        title: plan.location,
-        start: plan.date,
-        AMplan: plan.morning_task,
-        PMplan: plan.afternoon_task,
-        budget: plan.budget,
-        display: "background",
-      }));
+      try {
+        const allPlans = await fetchCalendarActivity();
+        const userPlans = allPlans.filter(
+          (plan) => plan.user_id === currentUser
+        );
 
-      setPlans(formattedPlans);
+        const formattedPlans = userPlans.map((plan) => ({
+          id: plan.id,
+          title: plan.location,
+          start: plan.date,
+          AMplan: plan.morning_task,
+          PMplan: plan.afternoon_task,
+          budget: plan.budget,
+          display: "background",
+        }));
+
+        setPlans(formattedPlans);
+      } catch (error) {
+        console.error("Error fetching plans:", error);
+      }
     };
 
     fetchAllPlans();
-  }, []);
+  }, [currentUser]);
 
   const handleEventClick = (clickInfo) => {
     setEventDetails({
@@ -243,6 +251,7 @@ export default function CalendarFeature({ currentUser }) {
           closeDetailModal={closeDetailModal}
           openDeleteModal={openDeleteModal}
           closeEditModal={closeEditModal}
+          currentUser={currentUser}
         />
       </article>
       <article className="delete-popup">
