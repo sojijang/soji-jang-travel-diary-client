@@ -9,6 +9,9 @@
     margin-bottom: 0.5rem;
     margin-left: 0.8rem;
     font-family: $primary-font;
+    @include desktop {
+      font-size: 1.25rem;
+    }
   }
 
   &__input {
@@ -16,5 +19,9 @@
     margin-bottom: 1rem;
     width: 13.125rem;
     align-self: center;
+    font-family: $primary-font;
+    @include desktop {
+      width: 14rem;
+    }
   }
 }

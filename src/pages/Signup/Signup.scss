@@ -7,16 +7,25 @@
   justify-content: center;
   align-items: center;
   padding: 3rem 0 1rem;
+  @include desktop {
+    padding: 3.5rem 3rem;
+  }
 
   &__button {
     @include button;
     text-decoration: none;
     padding: 0.35rem;
+    @include desktop {
+      padding: 0.5rem;
+    }
   }
 
   &__text {
     font-size: 0.95rem;
     font-family: $primary-font;
+    @include desktop {
+      font-size: 1.5rem;
+    }
   }
 
   &__link {
@@ -32,6 +41,10 @@
   width: 18rem;
   padding: 1.5rem;
   margin-bottom: 0.5rem;
+  @include desktop {
+    padding: 3rem;
+    width: 22rem;
+  }
 
   &__wrapper {
     display: flex;
@@ -43,12 +56,19 @@
     margin-top: 0.1rem;
     font-size: 2rem;
     font-family: $primary-font;
+    @include desktop {
+      font-size: 2.5rem;
+    }
   }
 
   &__icon {
     width: 2.75rem;
     height: 2.75rem;
     margin-top: 0.25rem;
+    @include desktop {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 
   &__button {
@@ -56,6 +76,12 @@
     margin-top: 1rem;
     padding: 0.5rem 5rem;
     font-size: 1rem;
+    background-color: #000;
+    color: #fff;
+    @include desktop {
+      font-size: 1.25rem;
+      padding: 0.5rem 5.4rem;
+    }
   }
 
   &__message {
@@ -63,5 +89,8 @@
     margin-left: 1.4rem;
     font-family: $primary-font;
     color: #ee6055;
+    @include desktop {
+      font-size: 1.1rem;
+    }
   }
 }
