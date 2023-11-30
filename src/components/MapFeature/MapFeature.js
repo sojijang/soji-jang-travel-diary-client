@@ -25,7 +25,6 @@ export default function MapFeature({ currentUser }) {
     zoom: 8,
   });
   const [points, setPoints] = useState([]);
-  // const [query, setQuery] = useState("");
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
   const [label, setLabel] = useState(null);
@@ -153,12 +152,11 @@ export default function MapFeature({ currentUser }) {
         mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
-        style={{ width: 390, height: 390 }}
+        style={{ width: 425, height: 425 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <SearchBox
           accessToken={process.env.REACT_APP_MAP_TOKEN}
-          // value={query}
           onRetrieve={handleOnResult}
           mapboxgl={mapboxgl}
           marker={true}

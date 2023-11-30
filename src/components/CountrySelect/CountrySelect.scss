@@ -2,10 +2,16 @@
 @use "../../styles/partials/mixins" as *;
 
 .country-select {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.5rem;
+  }
+
   &__globe-image {
     width: 16rem;
     height: 16rem;
-    margin: 4rem;
   }
 
   &__pin-image {
@@ -14,7 +20,7 @@
     position: absolute;
     z-index: 10;
     left: 52%;
-    top: 39%;
+    top: 38%;
     cursor: pointer;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.3);

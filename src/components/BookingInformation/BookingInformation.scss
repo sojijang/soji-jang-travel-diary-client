@@ -22,7 +22,7 @@
   &__button {
     @include button;
     font-size: 0.9rem;
-    padding: 0.25rem;
+    padding: 0.4rem;
     &--add {
       margin-top: 1.5rem;
     }
@@ -31,7 +31,6 @@
   &__info {
     gap: 1.5rem;
     margin-top: 1rem;
-    margin-bottom: 3.25rem;
   }
 
   &__add-icon {

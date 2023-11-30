@@ -15,7 +15,13 @@ export default function CountrySelect() {
   return (
     <main>
       <div className="country-select">
-        <img className="country-select__globe-image" src={Globe} alt="Globe" />
+        <div className="country-select__wrapper">
+          <img
+            className="country-select__globe-image"
+            src={Globe}
+            alt="Globe"
+          />
+        </div>
         <img
           className="country-select__pin-image"
           src={UKPin}
