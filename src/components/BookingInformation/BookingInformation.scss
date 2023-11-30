@@ -40,6 +40,8 @@
     @include button;
     font-size: 0.9rem;
     padding: 0.4rem;
+    background-color: #000;
+    color: #fff;
     &--add {
       margin-top: 1.5rem;
     }
