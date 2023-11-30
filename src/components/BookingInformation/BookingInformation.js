@@ -236,51 +236,56 @@ export default function BookingInformation({ currentUser }) {
           >
             Close
           </button>
-          {flights.map((flight) => (
-            <div key={flight.id} className="flight__article">
-              <div className="flight__wrapper">
-                <p className="flight__subtitle">Departure:</p>
-                <p className="flight__text">{flight.departure_location}</p>
+          {flights
+            .filter((flight) => flight.user_id === currentUser)
+            .map((flight) => (
+              <div key={flight.id} className="flight__article">
+                <div className="flight__wrapper">
+                  <p className="flight__subtitle">Departure:</p>
+                  <p className="flight__text">{flight.departure_location}</p>
+                </div>
+                <div className="flight__wrapper">
+                  <p className="flight__subtitle">ETD:</p>
+                  <p className="flight__text">
+                    {formatDate(flight.departure_etd)}
+                  </p>
+                </div>
+                <div className="flight__wrapper">
+                  <p className="flight__subtitle">Arrival:</p>
+                  <p className="flight__text">{flight.return_location}</p>
+                </div>
+                <div className="flight__wrapper">
+                  <p className="flight__subtitle">ETA:</p>
+                  <p className="flight__text">
+                    {formatDate(flight.return_eta)}
+                  </p>
+                </div>
+                <p className="flight__subtitle">Price: {flight.budget}</p>
+                <div className="flight__wrapper flight__wrapper--button">
+                  <button
+                    className="booking__button"
+                    onClick={() => {
+                      openEditModal(flight);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="booking__button"
+                    onClick={() => {
+                      openDeleteModal(flight);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              <div className="flight__wrapper">
-                <p className="flight__subtitle">ETD:</p>
-                <p className="flight__text">
-                  {formatDate(flight.departure_etd)}
-                </p>
-              </div>
-              <div className="flight__wrapper">
-                <p className="flight__subtitle">Arrival:</p>
-                <p className="flight__text">{flight.return_location}</p>
-              </div>
-              <div className="flight__wrapper">
-                <p className="flight__subtitle">ETA:</p>
-                <p className="flight__text">{formatDate(flight.return_eta)}</p>
-              </div>
-              <p className="flight__subtitle">Price: {flight.budget}</p>
-              <div className="flight__wrapper flight__wrapper--button">
-                <button
-                  className="booking__button"
-                  onClick={() => {
-                    openEditModal(flight);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="booking__button"
-                  onClick={() => {
-                    openDeleteModal(flight);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
 
           <button
             onClick={() => {
-              openModal(); closeInfoModal();
+              openModal();
+              closeInfoModal();
             }}
             className="booking__button booking__button--add"
           >
