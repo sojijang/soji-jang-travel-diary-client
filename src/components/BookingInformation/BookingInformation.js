@@ -4,19 +4,29 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import {
   fetchFlight,
-  fetchOneFlight,
   postFlight,
-  editFlight,
   deleteFlight,
 } from "../../utils/API";
 import FlightTicket from "../../assets/icons/ticket_7591340.svg";
+import EditBooking from "../EditBooking/EditBooking";
+import DeleteBooking from "../DeleteBooking/DeleteBooking";
 
 Modal.setAppElement("#root");
 
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+};
+
 export default function BookingInformation({ currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
   const [flights, setFlights] = useState([]);
+  const [flightId, setFlightId] = useState(null);
 
   const [departureETD, setDepartureETD] = useState(new Date());
   const [departureETA, setDepartureETA] = useState(new Date());
@@ -31,8 +41,32 @@ export default function BookingInformation({ currentUser }) {
     setIsOpen(false);
   };
 
-  const openInfo = () => {
-    setShowInfo(!showInfo);
+  const openInfoModal = () => {
+    setIsInfoOpen(true);
+  };
+
+  const closeInfoModal = () => {
+    setIsInfoOpen(false);
+  };
+
+  const openDeleteModal = (flight) => {
+    setIsDeleteOpen(true);
+    setIsInfoOpen(false);
+    setFlightId(flight.id);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteOpen(false);
+  };
+
+  const openEditModal = (flight) => {
+    setIsEditOpen(true);
+    setIsInfoOpen(false);
+    setFlightId(flight.id);
+  };
+
+  const closeEditModal = () => {
+    setIsEditOpen(false);
   };
 
   const formatDateForBackend = (dateString) => {
@@ -85,15 +119,20 @@ export default function BookingInformation({ currentUser }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const isDepartureValid = event.target.departure.value.trim() !== "";
+    const isArrivalValid = event.target.arrival.value.trim() !== "";
+
+    if (!isDepartureValid || !isArrivalValid) {
+      return;
+    }
+
     const parsedBudget = parseFloat(event.target.budget.value.trim());
 
     const newFlight = {
       user_id: currentUser,
       departure_location: event.target.departure.value,
       departure_etd: formatDateForBackend(departureETD),
-      departure_eta: formatDateForBackend(departureETA),
       return_location: event.target.arrival.value,
-      return_etd: formatDateForBackend(arrivalETD),
       return_eta: formatDateForBackend(arrivalETA),
       budget: parsedBudget,
     };
@@ -101,10 +140,22 @@ export default function BookingInformation({ currentUser }) {
     try {
       const data = await postFlight(newFlight);
 
-      console.log(data);
       setFlights([...flights, data]);
     } catch (error) {
       console.error(error.response.data);
+    }
+    closeModal();
+  };
+
+  const handleDeleteFlight = async (flightId) => {
+    try {
+      await deleteFlight(flightId);
+
+      setFlights((prevFlights) =>
+        prevFlights.filter((flight) => flight.id !== flightId)
+      );
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -139,7 +190,7 @@ export default function BookingInformation({ currentUser }) {
           <button onClick={openModal} className="booking__button">
             Add Flight
           </button>
-          <button onClick={openInfo} className="booking__button">
+          <button onClick={openInfoModal} className="booking__button">
             See Flight Here
           </button>
         </div>
@@ -157,40 +208,85 @@ export default function BookingInformation({ currentUser }) {
         handleArrivalETA={handleArrivalETA}
         arrivalETA={arrivalETA}
       />
-      {showInfo && (
-        <article className="flight">
+      <EditBooking
+        isEditOpen={isEditOpen}
+        closeEditModal={closeEditModal}
+        departureETD={departureETD}
+        arrivalETA={arrivalETA}
+        handleDepartureETD={handleDepartureETD}
+        handleArrivalETA={handleArrivalETA}
+        flight={flights.find((flight) => flight.id === flightId)}
+      />
+      <DeleteBooking
+        isDeleteOpen={isDeleteOpen}
+        closeDeleteModal={closeDeleteModal}
+        flightId={flightId}
+        handleDeleteFlight={handleDeleteFlight}
+      />
+      <Modal
+        isOpen={isInfoOpen}
+        onRequestClose={closeInfoModal}
+        style={customStyles}
+        shouldCloseOnOverlayClick={false}
+      >
+        <div className="flight">
+          <button
+            className="flight__button booking__button"
+            onClick={closeInfoModal}
+            style={customStyles}
+          >
+            Close
+          </button>
           {flights.map((flight) => (
             <div key={flight.id} className="flight__article">
               <div className="flight__wrapper">
+                <p className="flight__subtitle">Departure:</p>
+                <p className="flight__text">{flight.departure_location}</p>
+              </div>
+              <div className="flight__wrapper">
+                <p className="flight__subtitle">ETD:</p>
                 <p className="flight__text">
-                  Departure: {flight.departure_location}
-                </p>
-                <p className="flight__text">
-                  ETD: {formatDate(flight.departure_etd)}
-                </p>
-                <p className="flight__text">
-                  ETA: {formatDate(flight.departure_eta)}
+                  {formatDate(flight.departure_etd)}
                 </p>
               </div>
               <div className="flight__wrapper">
-                <p className="flight__text">
-                  Arrival: {flight.return_location}
-                </p>
-                <p className="flight__text">
-                  ETD: {formatDate(flight.return_etd)}
-                </p>
-                <p className="flight__text">
-                  ETA: {formatDate(flight.return_eta)}
-                </p>
+                <p className="flight__subtitle">Arrival:</p>
+                <p className="flight__text">{flight.return_location}</p>
               </div>
-              <p className="flight__text">Budget: {flight.budget}</p>
+              <div className="flight__wrapper">
+                <p className="flight__subtitle">ETA:</p>
+                <p className="flight__text">{formatDate(flight.return_eta)}</p>
+              </div>
+              <p className="flight__subtitle">Price: {flight.budget}</p>
+              <div className="flight__wrapper flight__wrapper--button">
+                <button
+                  className="booking__button"
+                  onClick={() => {
+                    openEditModal(flight);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="booking__button"
+                  onClick={() => {
+                    openDeleteModal(flight);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
-          <button onClick={openModal} className="booking__button">
+
+          <button
+            onClick={openModal}
+            className="booking__button booking__button--add"
+          >
             Add more
           </button>
-        </article>
-      )}
+        </div>
+      </Modal>
     </article>
   );
 }

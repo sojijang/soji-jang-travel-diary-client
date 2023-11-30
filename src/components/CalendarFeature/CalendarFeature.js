@@ -27,8 +27,8 @@ export default function CalendarFeature({ currentUser }) {
   const [afternoonTask, setAfternoonTask] = useState("");
   const [budget, setBudget] = useState("");
 
-  const [calendarActivities, setCalendarActivities] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [calendarActivities, setCalendarActivities] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const [startDate, setStartDate] = useState(new Date());
   const [activityId, setActivityId] = useState(null);
@@ -111,20 +111,20 @@ export default function CalendarFeature({ currentUser }) {
   };
 
   // check here
-  const getCalendarActivity = async () => {
-    try {
-      const data = await fetchCalendarActivity();
+  // const getCalendarActivity = async () => {
+  //   try {
+  //     const data = await fetchCalendarActivity();
 
-      setCalendarActivities(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     setCalendarActivities(data);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getCalendarActivity();
-  }, []);
+  // useEffect(() => {
+  //   getCalendarActivity();
+  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -168,6 +168,8 @@ export default function CalendarFeature({ currentUser }) {
   const handleSave = async (event) => {
     event.preventDefault();
 
+    console.log(eventDetails);
+
     const updatedActivity = {
       user_id: currentUser,
       date: eventDetails.start,
@@ -181,8 +183,9 @@ export default function CalendarFeature({ currentUser }) {
       await editActivity(activityId, updatedActivity);
 
       setPlans(
-        plans.map((plan) =>
-          plan.id === activityId
+        plans.map((plan) => {
+          console.log(plan.id == activityId);
+          return plan.id == activityId
             ? {
                 ...plan,
                 title: updatedActivity.location,
@@ -191,8 +194,8 @@ export default function CalendarFeature({ currentUser }) {
                 PMplan: updatedActivity.afternoon_task,
                 budget: updatedActivity.budget,
               }
-            : plan
-        )
+            : plan;
+        })
       );
     } catch (error) {
       console.error("Error updating activity:", error);
@@ -209,7 +212,6 @@ export default function CalendarFeature({ currentUser }) {
     }
   };
 
-  //styling
   const renderEventContent = (eventInfo) => {
     return (
       <>
@@ -221,9 +223,9 @@ export default function CalendarFeature({ currentUser }) {
     );
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <section className="calendar">

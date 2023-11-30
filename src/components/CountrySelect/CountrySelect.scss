@@ -3,35 +3,38 @@
 
 .country-select {
   &__globe-image {
-    width: 14rem;
-    height: 14rem;
-    margin: 5rem;
+    width: 16rem;
+    height: 16rem;
+    margin: 4rem;
   }
 
   &__pin-image {
-    width: 3rem;
-    height: 3rem;
+    width: 3.25rem;
+    height: 3.25rem;
     position: absolute;
     z-index: 10;
     left: 52%;
-    top: 43%;
+    top: 39%;
     cursor: pointer;
-  }
-
-  &__diary-image {
-    width: 350px;
-    height: 450px;
-    position: absolute;
-    top: 7%;
-    right: 3%;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.3);
+      transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.3);
+    }
+    &--us {
+      left: 24%;
+      top: 56%;
+    }
   }
 
   &__plain-image {
     width: 5rem;
     height: 5rem;
     position: absolute;
-    bottom: 8%;
-    right: 9%;
+    bottom: 19%;
+    right: 7%;
   }
 
   &__plain-image-two {

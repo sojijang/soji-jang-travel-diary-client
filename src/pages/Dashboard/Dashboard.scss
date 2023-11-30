@@ -2,11 +2,17 @@
 @use "../../styles/partials/mixins" as *;
 
 .dashboard {
+  background-image: url(../../assets/images/white-crumpled-paper-paper-texture.jpg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 670px;
+
   &__wrapper {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
   }
 
   &__title {
@@ -20,8 +26,8 @@
     height: 3rem;
     &--back {
       position: absolute;
-      bottom: -25%;
-      left: -6%;
+      bottom: -16%;
+      left: -4%;
       width: 2rem;
       height: 2rem;
       margin-left: 2rem;

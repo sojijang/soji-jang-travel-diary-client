@@ -1,5 +1,6 @@
 import "./EditMap.scss";
-import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
+import { Popup } from "react-map-gl";
+import { useState } from "react";
 
 export default function EditMap({
   editPoint,
@@ -10,6 +11,24 @@ export default function EditMap({
   const handleClose = () => {
     setCurrentPlaceId(null);
     setEditPoint(null);
+  };
+
+  const [labelError, setLabelError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
+
+  const validateField = (fieldName) => {
+    const value = document.getElementById(fieldName).value;
+    switch (fieldName) {
+      case "label":
+        setLabelError(value.trim() === "");
+        break;
+      case "description":
+        setDescriptionError(value.trim() === "");
+        break;
+
+      default:
+        break;
+    }
   };
   return (
     <div>
@@ -37,7 +56,10 @@ export default function EditMap({
                   </label>
                 </div>
                 <select
-                  className="edit-map-popup__select"
+                  className={`edit-map-popup__select ${
+                    labelError ? "error" : ""
+                  }`}
+                  onBlur={() => validateField("label")}
                   name="label"
                   id="label"
                   onChange={(event) => {
@@ -70,6 +92,9 @@ export default function EditMap({
                     Activity
                   </option>
                 </select>
+                {labelError && (
+                  <p className="error-message">Label is required.</p>
+                )}
               </div>
               <div className="edit-map-popup__container">
                 <label htmlFor="description" className="edit-map-popup__label">
@@ -77,7 +102,10 @@ export default function EditMap({
                 </label>
               </div>
               <textarea
-                className="edit-map-popup__input"
+                className={`edit-map-popup__input ${
+                  descriptionError ? "error" : ""
+                }`}
+                onBlur={() => validateField("description")}
                 name="description"
                 id="description"
                 cols="20"
@@ -90,6 +118,9 @@ export default function EditMap({
                 }}
                 value={editPoint.description}
               ></textarea>
+              {descriptionError && (
+                <p className="error-message">Description is required.</p>
+              )}
               <div className="edit-map-popup__wrapper">
                 <button type="submit" className="edit-map-popup__button">
                   Save

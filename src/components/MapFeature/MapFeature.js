@@ -1,6 +1,6 @@
 import "./MapFeature.scss";
 import React, { useEffect, useState } from "react";
-import Map, { Marker, Popup, Layer, Feature } from "react-map-gl";
+import Map, { Marker, Popup } from "react-map-gl";
 import { SearchBox } from "@mapbox/search-js-react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -25,7 +25,7 @@ export default function MapFeature({ currentUser }) {
     zoom: 8,
   });
   const [points, setPoints] = useState([]);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
   const [label, setLabel] = useState(null);
@@ -116,7 +116,7 @@ export default function MapFeature({ currentUser }) {
 
       setPoints((prevPoints) =>
         prevPoints.map((point) =>
-          point.id === pointId
+          point.id == pointId
             ? {
                 ...point,
                 label: updatedPoint.label,
@@ -143,6 +143,7 @@ export default function MapFeature({ currentUser }) {
     } catch (error) {
       console.error(error);
     }
+    closeModal();
   };
 
   return (
@@ -157,7 +158,7 @@ export default function MapFeature({ currentUser }) {
       >
         <SearchBox
           accessToken={process.env.REACT_APP_MAP_TOKEN}
-          value={query}
+          // value={query}
           onRetrieve={handleOnResult}
           mapboxgl={mapboxgl}
           marker={true}
@@ -201,30 +202,36 @@ export default function MapFeature({ currentUser }) {
                 onClose={() => setCurrentPlaceId(null)}
               >
                 <div className="map-place">
-                  <label htmlFor="place" className="map-place__label">
-                    Label:
-                  </label>
-                  <p className="map-place__content">{point.label}</p>
-                  <label htmlFor="description" className="map-place__label">
-                    Description:
-                  </label>
-                  <p className="map-place__content">{point.description}</p>
-                  <button
-                    className="map-place__button"
-                    onClick={() => {
-                      handleEdit(point);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="map-place__button"
-                    onClick={() => {
-                      openModal(point);
-                    }}
-                  >
-                    Delete
-                  </button>
+                  <div className="map-place__wrapper">
+                    <label htmlFor="place" className="map-place__label">
+                      Label:
+                    </label>
+                    <p className="map-place__content">{point.label}</p>
+                  </div>
+                  <div className="map-place__wrapper map-place__wrapper--margin">
+                    <label htmlFor="description" className="map-place__label">
+                      Description:
+                    </label>
+                    <p className="map-place__content">{point.description}</p>
+                  </div>
+                  <div className="map-place__group">
+                    <button
+                      className="map-place__button"
+                      onClick={() => {
+                        handleEdit(point);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="map-place__button"
+                      onClick={() => {
+                        openModal(point);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </Popup>
             )}

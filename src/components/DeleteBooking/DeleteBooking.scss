@@ -1,0 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.delete-booking-popup {
+  &__button {
+    @include button;
+    padding: 0.5rem;
+    &--delete {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__title {
+    margin: 1rem 0;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+  }
+}

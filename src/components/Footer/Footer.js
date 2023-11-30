@@ -6,7 +6,7 @@ import MapIcon from "../../assets/icons/map_7145349.svg";
 
 export default function Footer() {
   const location = useLocation();
-  const hideFooterForPaths = ["/", "/login","/signup"];
+  const hideFooterForPaths = ["/", "/login", "/signup", "/dashboard"];
 
   if (hideFooterForPaths.includes(location.pathname)) {
     return <></>;

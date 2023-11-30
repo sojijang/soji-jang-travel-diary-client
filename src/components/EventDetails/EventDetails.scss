@@ -6,7 +6,7 @@
     @include button;
     padding: 0.5rem;
     &--edit {
-        margin-right: 1rem;
+      margin-right: 1rem;
     }
   }
 
@@ -15,7 +15,27 @@
     margin-top: 1.5rem;
   }
 
+  &__subtitle {
+    margin: 0.5rem 0;
+  }
+
   &__group {
     margin-top: 2rem;
   }
+
+  &__content {
+    color: #41403e;
+    margin: 0.5rem 0;
+  }
+
+  &__wrapper {
+    border-bottom: 0.1rem dashed #000;
+  }
+
+  &__box {
+    @extend .detail-popup__wrapper;
+    display: flex;
+    gap: 0.5rem;
+  }
+
 }

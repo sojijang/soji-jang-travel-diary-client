@@ -37,15 +37,28 @@ export default function ShowEvent({
           Exit
         </button>
         <h2 className="detail-popup__title">EVENT DETAILS</h2>
-        <p className="detail-popup__subtitle">Date: {eventDetails.start}</p>
-        <p className="detail-popup__subtitle">Location: {eventDetails.title}</p>
+        <div className="detail-popup__box">
+          <p className="detail-popup__subtitle">Date: </p>
+          <p className="detail-popup__content"> {eventDetails.start}</p>
+        </div>
+        <div className="detail-popup__box">
+          <p className="detail-popup__subtitle">Location: </p>
+          <p className="detail-popup__content"> {eventDetails.title}</p>
+        </div>
         <div className="detail-popup__wrapper">
           <p className="detail-popup__subtitle">Morning:</p>
           <p className="detail-popup__content"> {eventDetails.AMplan}</p>
+        </div>
+
+        <div className="detail-popup__wrapper">
           <p className="detail-popup__subtitle">Afternoon:</p>
           <p className="detail-popup__content"> {eventDetails.PMplan}</p>
         </div>
-        <p className="detail-popup__subtitle">Budget: {eventDetails.budget}</p>
+        <div className="detail-popup__box">
+          <p className="detail-popup__subtitle">Budget: </p>
+          <p className="detail-popup__content"> {eventDetails.budget}</p>
+        </div>
+
         <div className="detail-popup__group">
           <button
             className="detail-popup__button detail-popup__button--edit"

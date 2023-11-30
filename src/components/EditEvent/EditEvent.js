@@ -19,6 +19,32 @@ export default function EditEvent({
 }) {
   const [startDate, setStartDate] = useState(new Date());
 
+  const [dateError, setDateError] = useState(false);
+  const [locationError, setLocationError] = useState(false);
+  const [taskError, setTaskError] = useState(false);
+  const [budgetError, setBudgetError] = useState(false);
+
+  const validateField = (fieldName) => {
+    const value = document.getElementById(fieldName).value;
+    switch (fieldName) {
+      case "date":
+        setDateError(value.trim() === "");
+        break;
+      case "location":
+        setLocationError(value.trim() === "");
+        break;
+      case "task":
+        setTaskError(value.trim() === "");
+        break;
+      case "budget":
+        setBudgetError(value.trim() === "");
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const handleDateSelect = (date) => {
     setStartDate(date);
     setEventDetails({
@@ -42,14 +68,19 @@ export default function EditEvent({
         <form onSubmit={handleSave} className="edit-popup__form">
           <p className="edit-popup__subtitle">Date</p>
           <DatePicker
-            className="edit-popup__input"
+            className={`add-popup__input ${dateError ? "error" : ""}`}
+            onBlur={() => validateField("date")}
+            name="date"
+            id="date"
             value={eventDetails.start}
             onChange={handleDateSelect}
           />
+          {dateError && <p className="error-message">Date is required.</p>}
           <p className="edit-popup__subtitle">Location:</p>
           <input
+            className={`edit-popup__input ${locationError ? "error" : ""}`}
+            onBlur={() => validateField("location")}
             type="text"
-            className="edit-popup__input"
             name="location"
             id="location"
             value={eventDetails.title}
@@ -60,14 +91,18 @@ export default function EditEvent({
               });
             }}
           />
+          {locationError && (
+            <p className="error-message">Location is required.</p>
+          )}
           <div className="edit-popup__wrapper">
             <p className="edit-popup__subtitle">Morning</p>
             <textarea
+              className={`edit-popup__input ${taskError ? "error" : ""}`}
+              onBlur={() => validateField("task")}
               cols="25"
               rows="5"
-              className="edit-popup__input"
-              name="morning_task"
-              id="morning_task"
+              name="task"
+              id="task"
               value={eventDetails.AMplan}
               onChange={(event) => {
                 setEventDetails({
@@ -80,11 +115,12 @@ export default function EditEvent({
           <div className="edit-popup__wrapper">
             <p className="edit-popup__subtitle">Afternoon</p>
             <textarea
+              className={`edit-popup__input ${taskError ? "error" : ""}`}
+              onBlur={() => validateField("task")}
               cols="25"
               rows="5"
-              className="edit-popup__input"
-              name="afternoon_task"
-              id="afternoon_task"
+              name="task"
+              id="task"
               value={eventDetails.PMplan}
               onChange={(event) => {
                 setEventDetails({
@@ -94,11 +130,14 @@ export default function EditEvent({
               }}
             ></textarea>
           </div>
+          {taskError && <p className="error-message">Plan is required.</p>}
+
           <div className="edit-popup__wrapper">
             <p className="edit-popup__subtitle">Budget</p>
             <input
+              className={`edit-popup__input ${budgetError ? "error" : ""}`}
+              onBlur={() => validateField("budget")}
               type="text"
-              className="edit-popup__input"
               name="budget"
               id="budget"
               value={eventDetails.budget}
@@ -110,7 +149,12 @@ export default function EditEvent({
               }}
             />
           </div>
-          <button type="submit" className="edit-popup__button edit-popup__button--save">
+          {budgetError && <p className="error-message">Budget is required.</p>}
+
+          <button
+            type="submit"
+            className="edit-popup__button edit-popup__button--save"
+          >
             Save
           </button>
         </form>

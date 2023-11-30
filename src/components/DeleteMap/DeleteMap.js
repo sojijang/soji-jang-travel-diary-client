@@ -29,7 +29,8 @@ export default function DeleteMap({
         </button>
         <form
           className="delete-map-popup__form"
-          onSubmit={() => {
+          onSubmit={(event) => {
+            event.preventDefault();
             handleDelete(pointId);
           }}
         >

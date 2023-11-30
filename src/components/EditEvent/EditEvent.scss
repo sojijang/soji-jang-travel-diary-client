@@ -6,7 +6,7 @@
     @include button;
     padding: 0.5rem;
     &--save {
-        margin-top: 1rem;
+      margin-top: 1rem;
     }
   }
 
@@ -21,5 +21,9 @@
   &__input {
     @include input;
     font-family: $primary-font;
+    &:focus {
+      border: 0.15rem solid #000;
+      outline: none;
+    }
   }
 }

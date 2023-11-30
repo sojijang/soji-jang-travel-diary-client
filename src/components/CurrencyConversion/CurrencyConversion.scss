@@ -27,6 +27,8 @@
     background: 0 0;
     font-size: 1rem;
     font-family: $primary-font;
+    width: auto;
+    height: auto;
   }
 
   &__icon {
@@ -41,4 +43,8 @@
     height: 2rem;
     margin-top: 0.75rem;
   }
+
+  // &__option {
+  //   width: 200px;
+  // }
 }
