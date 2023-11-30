@@ -27,9 +27,6 @@ export default function CalendarFeature({ currentUser }) {
   const [afternoonTask, setAfternoonTask] = useState("");
   const [budget, setBudget] = useState("");
 
-  // const [calendarActivities, setCalendarActivities] = useState(null);
-  // const [isLoading, setIsLoading] = useState(true);
-
   const [startDate, setStartDate] = useState(new Date());
   const [activityId, setActivityId] = useState(null);
 
@@ -110,22 +107,6 @@ export default function CalendarFeature({ currentUser }) {
     setDate(date.toISOString().split("T")[0]);
   };
 
-  // check here
-  // const getCalendarActivity = async () => {
-  //   try {
-  //     const data = await fetchCalendarActivity();
-
-  //     setCalendarActivities(data);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getCalendarActivity();
-  // }, []);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -168,8 +149,6 @@ export default function CalendarFeature({ currentUser }) {
   const handleSave = async (event) => {
     event.preventDefault();
 
-    console.log(eventDetails);
-
     const updatedActivity = {
       user_id: currentUser,
       date: eventDetails.start,
@@ -184,7 +163,6 @@ export default function CalendarFeature({ currentUser }) {
 
       setPlans(
         plans.map((plan) => {
-          console.log(plan.id == activityId);
           return plan.id == activityId
             ? {
                 ...plan,
@@ -200,16 +178,23 @@ export default function CalendarFeature({ currentUser }) {
     } catch (error) {
       console.error("Error updating activity:", error);
     }
+    setIsEditOpen(false);
   };
 
   const handleDelete = async (activityId) => {
     try {
       await deleteActivity(activityId);
 
-      setPlans(plans.filter((plan) => plan.id !== activityId));
+      setPlans((prevPlans) =>
+        prevPlans.filter((plan) => plan.id !== activityId)
+      );
     } catch (error) {
       console.error(error);
     }
+    const updatedActivities = await fetchCalendarActivity();
+    setPlans(updatedActivities);
+
+    setActivityId(null);
   };
 
   const renderEventContent = (eventInfo) => {
@@ -217,15 +202,11 @@ export default function CalendarFeature({ currentUser }) {
       <>
         <b>{eventInfo.timeText}</b>
         <div style={{ color: "red" }}>
-          <i>{eventInfo.event.title}</i>
+          <i style={{ textAlign: "center" }}>{eventInfo.event.title}</i>
         </div>
       </>
     );
   };
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <section className="calendar">

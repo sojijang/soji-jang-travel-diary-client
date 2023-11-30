@@ -2,6 +2,7 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import LogoIcon from "../../assets/icons/writing_5560402.svg";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Header({ setCurrentUser, setIsLoggedin, isLoggedin }) {
   const location = useLocation();
@@ -16,6 +17,13 @@ export default function Header({ setCurrentUser, setIsLoggedin, isLoggedin }) {
 
     alert("You have been successfully logged out");
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedin(true);
+    }
+  }, [setIsLoggedin, setCurrentUser]);
 
   if (hideHeaderForPaths.includes(location.pathname)) {
     return <></>;

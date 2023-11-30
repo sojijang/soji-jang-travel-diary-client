@@ -2,11 +2,7 @@ import "./BookingInformation.scss";
 import AddBooking from "../AddBooking/AddBooking";
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import {
-  fetchFlight,
-  postFlight,
-  deleteFlight,
-} from "../../utils/API";
+import { fetchFlight, postFlight, deleteFlight } from "../../utils/API";
 import FlightTicket from "../../assets/icons/ticket_7591340.svg";
 import EditBooking from "../EditBooking/EditBooking";
 import DeleteBooking from "../DeleteBooking/DeleteBooking";
@@ -157,6 +153,9 @@ export default function BookingInformation({ currentUser }) {
     } catch (error) {
       console.error(error);
     }
+
+    const updatedFlights = await fetchFlight();
+    setFlights(updatedFlights);
   };
 
   const formatDate = (dateString) => {
@@ -280,7 +279,9 @@ export default function BookingInformation({ currentUser }) {
           ))}
 
           <button
-            onClick={openModal}
+            onClick={() => {
+              openModal(); closeInfoModal();
+            }}
             className="booking__button booking__button--add"
           >
             Add more

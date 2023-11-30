@@ -30,6 +30,8 @@ export default function MapFeature({ currentUser }) {
   const [label, setLabel] = useState(null);
   const [description, setDescription] = useState(null);
 
+  const [query, setQuery] = useState("");
+
   const [editPoint, setEditPoint] = useState(null);
   const [pointId, setPointId] = useState(null);
 
@@ -160,6 +162,7 @@ export default function MapFeature({ currentUser }) {
           onRetrieve={handleOnResult}
           mapboxgl={mapboxgl}
           marker={true}
+          value={query}
           theme={{
             variables: {
               fontFamily: "Avenir, sans-serif",
