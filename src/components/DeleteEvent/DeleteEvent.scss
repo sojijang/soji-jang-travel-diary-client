@@ -3,14 +3,27 @@
 
 .delete-popup {
   &__title {
-   margin: 1rem 0;
+    margin: 1rem 0;
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+
+  &__text {
+    @include desktop {
+      font-size: 1.25rem;
+    }
   }
 
   &__button {
     @include button;
     padding: 0.5rem;
+    background-color: #000;
+    color: #fff;
     &--delete {
-        margin-top: 0.5rem;
+      margin-top: 0.5rem;
+      background-color: #000;
+      color: #fff;
     }
   }
 }

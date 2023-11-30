@@ -59,6 +59,7 @@ export default function EditEvent({
       onRequestClose={closeEditModal}
       style={customStyles}
       shouldCloseOnOverlayClick={false}
+      className="edit-popup__modal"
     >
       <div className="edit-popup">
         <button className="edit-popup__button" onClick={closeEditModal}>

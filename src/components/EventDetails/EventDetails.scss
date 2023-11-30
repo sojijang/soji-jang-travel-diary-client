@@ -2,21 +2,48 @@
 @use "../../styles/partials/mixins" as *;
 
 .detail-popup {
+  &__modal {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    width: 80%;
+    height: 78%;
+    transform: translate(14%, 13%);
+    overflow-y: auto;
+    max-height: 50rem;
+    @include desktop {
+      transform: translate(109%, 25%);
+    }
+  }
+
   &__button {
     @include button;
     padding: 0.5rem;
+    background-color: #000;
+    color: #fff;
     &--edit {
       margin-right: 1rem;
+      background-color: #000;
+      color: #fff;
+    }
+    @include desktop {
+      padding: 0.7rem;
     }
   }
 
   &__title {
     margin: 1rem 0;
     margin-top: 1.5rem;
+    @include desktop {
+      font-size: 1.75rem;
+    }
   }
 
   &__subtitle {
     margin: 0.5rem 0;
+    @include desktop {
+      font-size: 1.1rem;
+    }
   }
 
   &__group {
@@ -26,6 +53,9 @@
   &__content {
     color: #41403e;
     margin: 0.5rem 0;
+    @include desktop {
+      font-size: 1.1rem;
+    }
   }
 
   &__wrapper {
@@ -37,5 +67,4 @@
     display: flex;
     gap: 0.5rem;
   }
-
 }

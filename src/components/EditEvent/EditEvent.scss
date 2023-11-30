@@ -2,20 +2,48 @@
 @use "../../styles/partials/mixins" as *;
 
 .edit-popup {
+  &__modal {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    width: 80%;
+    height: 93%;
+    transform: translate(15%, 3%);
+    overflow-y: auto;
+    max-height: 50rem;
+    @include desktop {
+      width: 30%;
+      transform: translate(109%, 3%);
+    }
+  }
+
   &__button {
     @include button;
     padding: 0.5rem;
+    background-color: #000;
+    color: #fff;
     &--save {
       margin-top: 1rem;
+      background-color: #000;
+      color: #fff;
+    }
+    @include desktop {
+      padding: 0.7rem;
     }
   }
 
   &__title {
     margin: 1rem 0;
+    @include desktop {
+      font-size: 1.75rem;
+    }
   }
 
   &__subtitle {
     margin: 0.5rem 0;
+    @include desktop {
+      font-size: 1.1rem;
+    }
   }
 
   &__input {

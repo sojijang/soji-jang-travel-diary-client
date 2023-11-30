@@ -3,13 +3,13 @@
 @use "./styles//partials/resets" as *;
 
 .App {
-  background-image: url(./assets/images/white-crumpled-paper-paper-texture.jpg);
+  background-image: url(./assets/images/paper_copy.jpg);
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 42rem;
+  height: 40.2rem;
   @include desktop {
     background-image: url(./assets/images/paper_copy.jpg);
-    height: 52.5rem;
+    height: 52rem;
   }
 }

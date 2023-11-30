@@ -53,6 +53,7 @@ export default function AddEvent({
       onRequestClose={closeAddModal}
       style={customStyles}
       shouldCloseOnOverlayClick={false}
+      className="add-popup__modal"
     >
       <div className="add-popup__wrapper">
         <button className="add-popup__button" onClick={closeAddModal}>

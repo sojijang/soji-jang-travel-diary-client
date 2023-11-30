@@ -4,8 +4,11 @@
 .footer {
   margin-top: 0.5rem;
   border-top: 0.15rem dashed #000;
+  background-image: url(../../assets/images/paper_copy.jpg);
+  background-position: center;
+  background-size: cover;
   @include desktop {
-    margin-top: 1rem;
+    margin: 0;
   }
 
   &__wrapper {
@@ -14,8 +17,8 @@
     gap: 5rem;
     padding: 1rem 0;
     @include desktop {
-     gap: 7rem;
-     margin-top: 0.7rem;
+      gap: 7rem;
+      margin-top: 0.7rem;
     }
   }
   &__calendar-icon {

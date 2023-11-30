@@ -22,12 +22,16 @@
     padding: 0.25rem;
     &--close {
       margin-bottom: 1rem;
+      background-color: #000;
+      color: #fff;
       @include desktop {
         margin-bottom: 0.5rem;
       }
     }
     &--save {
       margin-top: 1rem;
+      background-color: #000;
+      color: #fff;
     }
   }
 

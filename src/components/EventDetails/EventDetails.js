@@ -31,6 +31,7 @@ export default function ShowEvent({
       onRequestClose={closeDetailModal}
       style={customStyles}
       shouldCloseOnOverlayClick={false}
+      className="detail-popup__modal"
     >
       <div className="detail-popup">
         <button className="detail-popup__button" onClick={closeDetailModal}>
