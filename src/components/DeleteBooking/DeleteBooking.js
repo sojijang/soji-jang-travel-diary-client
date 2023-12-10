@@ -32,8 +32,8 @@ export default function DeleteMap({
         </button>
         <form
           className="delete-booking-popup__form"
-          onSubmit={() => {
-            handleDeleteFlight(flightId);
+          onSubmit={(event) => {
+            handleDeleteFlight(event, flightId);
           }}
         >
           <h2 className="delete-booking-popup__title">Delete</h2>

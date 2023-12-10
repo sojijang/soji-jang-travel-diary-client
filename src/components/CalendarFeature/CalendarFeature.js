@@ -200,9 +200,23 @@ export default function CalendarFeature({ currentUser }) {
       console.error(error);
     }
     const updatedActivities = await fetchCalendarActivity();
-    setPlans(updatedActivities);
 
-    setActivityId(null);
+    // to do: repeat this from the higher line, move these two things to function then re-use it 
+    const userPlans = updatedActivities.filter(
+      (plan) => plan.user_id === currentUser
+    );
+
+    const formattedPlans = userPlans.map((plan) => ({
+      id: plan.id,
+      title: plan.location,
+      start: plan.date,
+      AMplan: plan.morning_task,
+      PMplan: plan.afternoon_task,
+      budget: plan.budget,
+      display: "background",
+    }));
+
+    setPlans(formattedPlans);
   };
 
   const renderEventContent = (eventInfo) => {

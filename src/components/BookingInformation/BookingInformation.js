@@ -145,7 +145,9 @@ export default function BookingInformation({ currentUser }) {
     closeModal();
   };
 
-  const handleDeleteFlight = async (flightId) => {
+  const handleDeleteFlight = async (event, flightId) => {
+    event.preventDefault();
+
     try {
       await deleteFlight(flightId);
 
@@ -155,9 +157,7 @@ export default function BookingInformation({ currentUser }) {
     } catch (error) {
       console.error(error);
     }
-
-    const updatedFlights = await fetchFlight();
-    setFlights(updatedFlights);
+    closeDeleteModal();
   };
 
   const formatDate = (dateString) => {
@@ -186,7 +186,10 @@ export default function BookingInformation({ currentUser }) {
             alt="Flight ticket"
           />
           <h2 className="booking__title">Booking Information</h2>
-          <button onClick={openModal} className="booking__button booking__button--show">
+          <button
+            onClick={openModal}
+            className="booking__button booking__button--show"
+          >
             Add Flight
           </button>
         </div>
