@@ -16,9 +16,9 @@ export default function CurrencyConversion() {
   let toRate, fromRate;
   if (convertedRate) {
     fromRate = rate;
-    toRate = rate * exchangeRate;
+    toRate = (parseFloat(rate) * exchangeRate).toFixed(4);
   } else {
-    fromRate = rate / exchangeRate;
+    fromRate = (parseFloat(rate) / exchangeRate).toFixed(4);
     toRate = rate;
   }
 

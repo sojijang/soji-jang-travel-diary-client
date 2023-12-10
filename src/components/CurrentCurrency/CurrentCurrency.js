@@ -21,6 +21,10 @@ export default function CurrentCurrency() {
     fetchCurrentGBP();
   }, []);
 
+  const formattedPoundCurrency = isLoading
+    ? "Loading..."
+    : `£ ${parseFloat(poundCurrency).toFixed(4)}`;
+
   return (
     <article className="current-currency">
       <div className="current-currency__box">
@@ -35,7 +39,7 @@ export default function CurrentCurrency() {
           ) : (
             <p className="current-currency__text">
               <b className="current-currency__text">Current GBP</b> : £{" "}
-              {poundCurrency}
+              {formattedPoundCurrency}
             </p>
           )}
         </div>
