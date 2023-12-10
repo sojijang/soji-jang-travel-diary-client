@@ -30,29 +30,6 @@
 **Server:** Node.js, Express and Knex.js
 
 
-## API Reference
-
-#### Get currency
-
-```http
-BaseUrl: http://api.freecurrencyapi.com/v1/latest?apikey=
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| apiKey | `string` | fca_live_YZ6E18udVnbTWkDsPIDDBvMvpZ7iNAeTIdzbUi5T |
-
-#### Get Map
-
-
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `token`      | `string` | 
-pk.eyJ1Ijoic29qaTAxMTQiLCJhIjoiY2xwYTdqazNlMDU1MzJqbHMycnV6eHVicyJ9.07zYkEHNJ9HPrG86PjsWRQ
-
-
-
 ## Run Locally
 
 Clone the project
@@ -100,16 +77,7 @@ Start the server
   npm start
 ```
 
-
-## Next Step Until Demo Day
-
-- Add edit & delete funtionality in the booking information section.
-- Refactor code in calendar and map sections in order to fix re-loading problem when editing or deleting.
-- More styling includes responsive design.
-- Log-out functionality
-- Add seed-data
-
-## Next Step After Demo Day
+## Next Step
 
 - Implement the capability to include hotel booking details in the booking information section.
 
@@ -122,6 +90,7 @@ Start the server
 - Organize the labels on the map to allow users to easily identify and view their desired places-to-go categorized.
 
 - Implement a checklist feature to help users plan and track essential tasks for their trip.
+
 ## 🚀 About Me
 Hi 👋, I'm Soji Jang!
 A passionate full stack developer from South Korea.
@@ -130,7 +99,7 @@ A passionate full stack developer from South Korea.
 
 (https://github.com/sojijang/travel-diary-client & https://github.com/sojijang/travel-diary-server)
 
-🌱 I’m currently learning at Brainstation
+🌱 I’ve currently completed a Software Engineering bootcamp at BrainStation.
 
 💬 Ask me about JavaScript, React and Node.js
 
