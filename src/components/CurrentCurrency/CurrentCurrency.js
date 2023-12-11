@@ -23,7 +23,7 @@ export default function CurrentCurrency() {
 
   const formattedPoundCurrency = isLoading
     ? "Loading..."
-    : `£ ${parseFloat(poundCurrency).toFixed(4)}`;
+    : `${parseFloat(poundCurrency).toFixed(4)}`;
 
   return (
     <article className="current-currency">
