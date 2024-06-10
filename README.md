@@ -99,8 +99,6 @@ A passionate full stack developer from South Korea.
 
 (https://github.com/sojijang/travel-diary-client & https://github.com/sojijang/travel-diary-server)
 
-🌱 I’ve currently completed a Software Engineering bootcamp at BrainStation.
-
 💬 Ask me about JavaScript, React and Node.js
 
 📫 How to reach me hailey9214@gmail.com
